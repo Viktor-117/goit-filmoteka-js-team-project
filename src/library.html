@@ -3,17 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Filmoteka-My-Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./library.js"></script>
   </head>
   <body>
-    <header>
-      <p>This is Library</p>
-      <a href="./library.html">My library</a>
-      <a href="./index.html">Home</a>
+    <header class="header__library">
+      <div class="container">
+        <nav class="nav__menu">
+          <a class="logo__link" href="./index.html">
+            <img
+              src="./images/film.svg"
+              alt="film-icon"
+              width="24"
+              height="24"
+            />
+            <span class="logo__link-text">Filmoteka </span>
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a class="nav__link" href="./index.html">home</a>
+              </li>
+              <li class="nav__item">
+                <a class="nav__link current" href="./library.html"
+                  >my library</a
+                >
+              </li>
+            </ul>
+          </a>
+        </nav>
+        <ul class="filter__list">
+          <li class="filter__item">
+            <button class="filter_btn current" type="button">watched</button>
+          </li>
+          <li class="filter__item">
+            <button class="filter_btn" type="button">queue</button>
+          </li>
+        </ul>
+      </div>
     </header>
-    <main></main>
+    <main>
+      <div class="container">
+        <ul class="film__list"></ul>
+      </div>
+    </main>
     <footer></footer>
   </body>
 </html>
