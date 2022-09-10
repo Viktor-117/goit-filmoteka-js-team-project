@@ -1,0 +1,1 @@
+import {toggleModal} from './film-modal'
