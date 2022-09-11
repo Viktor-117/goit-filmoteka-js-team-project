@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { API_KEY } from './key.js';
 import { refs } from '../index.js';
-const API_KEY = '520faa847257d57af54017c37ef43fe0';
 
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
 let currentPage = 1;
