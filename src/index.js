@@ -1,4 +1,4 @@
-import { toggleModal } from './film-modal';
+import { toggleModal } from './js/film-modal';
 import axios from 'axios';
 import { getTrending } from './js/getTrending.js';
 import pagination from './js/pagination';
