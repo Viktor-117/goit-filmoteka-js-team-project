@@ -55,7 +55,6 @@ async function addPagination() {
       }
       done(result);
     },
-    className: 'custom-paginationjs',
     pageSize: 20,
     callback: async function (data, pagination) {
       await renderMoviesList(pagination.pageNumber);
