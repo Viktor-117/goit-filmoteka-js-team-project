@@ -1,4 +1,5 @@
-import { API_KEY } from '../index.js';
+const API_KEY = '520faa847257d57af54017c37ef43fe0';
+
 import axios from 'axios';
 
 export async function getGenres() {
