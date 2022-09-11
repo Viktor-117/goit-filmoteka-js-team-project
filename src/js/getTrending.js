@@ -1,10 +1,10 @@
 import axios from 'axios';
 // import { API_KEY } from '../index.js';
-
+import { refs } from '../index.js';
 // temporary constants, because its some error in export
-const refs = {
-  moviesList: document.querySelector('.film__list'),
-};
+// const refs = {
+//   moviesList: document.querySelector('.film__list'),
+// };
 const API_KEY = '520faa847257d57af54017c37ef43fe0';
 //end temp temporary constants
 
@@ -24,7 +24,10 @@ export async function getTrending(currentPage) {
 }
 
 getTrending(currentPage).then(res => {
-  console.log(res.results.length);
+  refs.moviesList.insertAdjacentHTML('beforeend', createMarkup(res));
+});
+
+function createMarkup(res) {
   if (res.results.length >= 1) {
     const markup = res.results
       .map(
@@ -50,7 +53,6 @@ getTrending(currentPage).then(res => {
         }
       )
       .join('');
-
-    refs.moviesList.insertAdjacentHTML('beforeend', markup);
+    return markup;
   }
-});
+}
