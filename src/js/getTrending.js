@@ -1,17 +1,10 @@
 import axios from 'axios';
-// import { API_KEY } from '../index.js';
+import { API_KEY } from './key.js';
+import { refs } from '../index.js';
 
-// temporary constants, because its some error in export
-const refs = {
-  moviesList: document.querySelector('.film__list'),
-};
-const API_KEY = '520faa847257d57af54017c37ef43fe0';
-//end temp temporary constants
-
-let currentPage = 1;
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
+let currentPage = 1;
 
-console.log(API_KEY);
 export async function getTrending(currentPage) {
   try {
     const resTrending = await axios.get(
