@@ -16,36 +16,34 @@ export async function getTrending(currentPage) {
   }
 }
 
-getTrending(currentPage).then(res => {
-  refs.moviesList.insertAdjacentHTML('beforeend', createMarkup(res));
-});
+// getTrending(currentPage).then(res => {
+//   console.log(res.results.length);
+//   if (res.results.length >= 1) {
+//     const markup = res.results
+//       .map(
+//         ({
+//           id,
+//           title,
+//           original_title,
+//           poster_path,
+//           genre_ids,
+//           release_date,
+//           vote_average,
+//         }) => {
+//           return `<li class="gallery__item">
+//             <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" />
+//             <div class="item__ptext">
+//               <h2 class="item__capt">${title}</h2>
+//               <div class="item__wrap">
+//                 <p class="item__genre">${genre_ids} | ${release_date}</p>
+//                 <p class="item__rating">${vote_average}</p>
+//               </div>
+//             </div>
+//           </li>`;
+//         }
+//       )
+//       .join('');
 
-function createMarkup(res) {
-  if (res.results.length >= 1) {
-    const markup = res.results
-      .map(
-        ({
-          id,
-          title,
-          original_title,
-          poster_path,
-          genre_ids,
-          release_date,
-          vote_average,
-        }) => {
-          return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" />
-            <div class="item__ptext">
-              <h2 class="item__capt">${title}</h2>
-              <div class="item__wrap">
-                <p class="item__genre">${genre_ids} | ${release_date}</p>
-                <p class="item__rating">${vote_average}</p>
-              </div>
-            </div>
-          </li>`;
-        }
-      )
-      .join('');
-    return markup;
-  }
-}
+//     refs.moviesList.insertAdjacentHTML('beforeend', markup);
+//   }
+// });

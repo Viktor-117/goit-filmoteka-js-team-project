@@ -1,6 +1,7 @@
 import { toggleModal } from './film-modal';
 import axios from 'axios';
 import { getTrending } from './js/getTrending.js';
+import pagination from './js/pagination';
 import { getGenreById } from './js/getGenreById.js';
 
 const refs = {

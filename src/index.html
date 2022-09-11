@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/paginationLibrary.js"></script>
   </head>
   <body>
     <header class="header">
@@ -56,9 +58,10 @@
       </div>
     </header>
     <main>
-      <div class="container">
+      <div class="container movies__container">
         <ul class="film__list"></ul>
       </div>
+      <div id="pagination-container"></div>
     </main>
     <footer class="footer">
       <div class="container">
