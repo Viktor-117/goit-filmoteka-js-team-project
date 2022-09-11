@@ -18,7 +18,7 @@ function renderFilmInfo(filmData) {
   refs.filmCard.innerHTML = markup;
   return Promise.resolve();
 }
-function showFilmInfo(movieId) {
+export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(toggleModal).catch(console.log);
 }
 // showFilmInfo(777);
