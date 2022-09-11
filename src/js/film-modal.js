@@ -5,6 +5,7 @@ const refs = {
 };
 
 refs.openFilmModal.addEventListener("click", toggleModal);
+refs.closeFilmModal.addEventListener("keydown", toggleModal)
 refs.closeFilmModal.addEventListener("click", toggleModal)
 
 
