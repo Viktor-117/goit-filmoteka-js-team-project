@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/paginationLibrary.js"></script>
   </head>
   <body>
     <header class="header">
@@ -56,9 +58,10 @@
       </div>
     </header>
     <main>
-      <div class="container">
+      <div class="container movies__container">
         <ul class="film__list" data-modal-open></ul>
       </div>
+      <div id="pagination-container"></div>
     </main>
     <footer class="footer">
       <div class="container">
@@ -70,42 +73,59 @@
       </div>
     </footer>
     <!-- -->
-        <div class="backdrop is-hidden" data-film-modal data-modal-close>
-          <div class="modal-film">
-            <button class="btn-modal-close" type="button" data-modal-close>
-              <svg class="btn-modal-close__svg">
-                <use href="./images/symbol-defs.svg#icon-VectorX"></use>
-              </svg>
-            </button>
-            <div class="modal-film__film-card">
-                  <div class="modal-film__img-block">
-                   <img class="film-img" alt="film poster" width="375" height="478">
-               </div>
-               <div class="modal-film__film-content">
-                  <h1 class="modal-film__film-name">A FISTFUL OF LEAD</h1>
+    <div class="backdrop is-hidden" data-film-modal data-modal-close>
+      <div class="modal-film">
+        <button class="btn-modal-close" type="button" data-modal-close>
+          <svg class="btn-modal-close__svg">
+            <use href="./images/symbol-defs.svg#icon-VectorX"></use>
+          </svg>
+        </button>
+        <div class="modal-film__film-card">
+          <div class="modal-film__img-block">
+            <img class="film-img" alt="film poster" width="375" height="478" />
+          </div>
+          <div class="modal-film__film-content">
+            <h1 class="modal-film__film-name">A FISTFUL OF LEAD</h1>
+            <ul class="modal-film__film-data-list">
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Vote / Votes</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Popularity</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Original Title</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Genre</p>
+              </li>
+            </ul>
 
-                  <ul class="modal-film__film-data-list">
-                    <li class="modal-film__film-data-elem"><p class="modal-film__film-data">Vote / Votes</p></li>
-                    <li class="modal-film__film-data-elem"><p class="modal-film__film-data">Popularity</p></li>
-                    <li class="modal-film__film-data-elem"><p class="modal-film__film-data">Original Title</p></li>
-                    <li class="modal-film__film-data-elem"><p class="modal-film__film-data">Genre</p></li>
-                  </ul>
-                  
-                  <div class="modal-film__about-film">
-                      <h2 class="modal-film__about">ABOUT</h2>
-                      <p class="modal-film__about-text">Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the most corrupt settlement of the
-                      gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of gold hide out in the
-                      abandoned gold mine where they happen across another gang of three – who themselves were planning to hit the very same
-                      bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled with lead... they’ve
-                      been double crossed – but by who and how?</p>
-                  </div>
-                  <div class="modal-film__btn-grup">
-                      <button class="modal-film__btn" type="button">ADD TO WATCHED</button>
-                      <button class="modal-film__btn" type="button">ADD TO QUEUE</button>
-                  </div>
-               </div>
+            <div class="modal-film__about-film">
+              <h2 class="modal-film__about">ABOUT</h2>
+              <p class="modal-film__about-text">
+                Four of the West’s most infamous outlaws assemble to steal a
+                huge stash of gold from the most corrupt settlement of the gold
+                rush towns. But not all goes to plan one is killed and the other
+                three escapes with bags of gold hide out in the abandoned gold
+                mine where they happen across another gang of three – who
+                themselves were planning to hit the very same bank! As tensions
+                rise, things go from bad to worse as they realise the bags of
+                gold are filled with lead... they’ve been double crossed – but
+                by who and how?
+              </p>
+            </div>
+            <div class="modal-film__btn-grup">
+              <button class="modal-film__btn" type="button">
+                ADD TO WATCHED
+              </button>
+              <button class="modal-film__btn" type="button">
+                ADD TO QUEUE
+              </button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
   </body>
 </html>
