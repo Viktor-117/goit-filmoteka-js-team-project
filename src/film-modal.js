@@ -21,4 +21,4 @@ function renderFilmInfo(filmData) {
 function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(toggleModal).catch(console.log);
 }
-showFilmInfo(777);
+// showFilmInfo(777);
