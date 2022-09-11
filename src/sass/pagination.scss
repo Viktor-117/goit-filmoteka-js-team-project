@@ -1,4 +1,8 @@
+#pagination-container {
+  display: flex;
+}
 .paginationjs {
+  margin: auto;
   line-height: 1.6;
   font-family: Marmelad, 'Lucida Grande', Arial, 'Hiragino Sans GB', Georgia,
     sans-serif;
@@ -27,16 +31,15 @@
 }
 .paginationjs .paginationjs-pages li {
   float: left;
-  border: 1px solid #aaa;
   border-right: none;
   list-style: none;
 }
 .paginationjs .paginationjs-pages li > a {
+  border-radius: 3px;
   min-width: 30px;
   height: 28px;
   line-height: 28px;
   display: block;
-  background: #fff;
   font-size: 14px;
   color: #333;
   text-decoration: none;
@@ -51,11 +54,10 @@
 .paginationjs .paginationjs-pages li.active > a {
   height: 30px;
   line-height: 30px;
-  background: #aaa;
+  background: #ff6b08;
   color: #fff;
 }
 .paginationjs .paginationjs-pages li.disabled > a {
-  opacity: 0.3;
 }
 .paginationjs .paginationjs-pages li.disabled > a:hover {
   background: 0 0;
@@ -65,7 +67,6 @@
   border-radius: 3px 0 0 3px;
 }
 .paginationjs .paginationjs-pages li:last-child {
-  border-right: 1px solid #aaa;
   border-radius: 0 3px 3px 0;
 }
 .paginationjs .paginationjs-pages li:last-child > a {
@@ -91,7 +92,6 @@
   line-height: 28px;
   background: #fff;
   border-radius: 3px;
-  border: 1px solid #aaa;
   text-align: center;
   padding: 0 8px;
   font-size: 14px;
@@ -321,7 +321,6 @@
   background-color: #ce4541;
 }
 .paginationjs .paginationjs-pages li.paginationjs-next {
-  border-right: 1px solid #aaa;
 }
 .paginationjs .paginationjs-go-input > input[type='text'] {
   line-height: 28px\9;
