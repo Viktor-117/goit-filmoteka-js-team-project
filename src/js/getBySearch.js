@@ -61,5 +61,5 @@ function renderMoviesList(movies){
     )
     .join('');
   refs.moviesList.innerHTML = markup;
- 
+
 }
