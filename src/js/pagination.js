@@ -28,7 +28,7 @@ export default async function renderMoviesList(pageNumber) {
           vote_average,
         }) => {
           return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" />
+            <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
