@@ -4,6 +4,7 @@ import { getTrending } from './js/getTrending.js';
 import pagination from './js/pagination';
 import { getGenreById } from './js/getGenreById.js';
 import { onSearch } from './js/getBySearch.js';
+import { toggleTeamModal } from './js/team-modal';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
