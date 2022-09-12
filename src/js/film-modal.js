@@ -1,10 +1,10 @@
-import { getById } from './js/getById';
-import filmCardTemplate from './hbs/modal-film-card.hbs';
+import { getById } from './getById';
+import filmCardTemplate from '../hbs/modal-film-card.hbs';
 const refs = {
   openFilmModal: document.querySelector('[data-modal-open]'),
   closeFilmModal: document.querySelector('[data-modal-close]'),
   filmModal: document.querySelector('[data-film-modal]'),
-  filmCard: document.querySelector('[data-film-card'),
+  filmCard: document.querySelector('[data-film-card]'),
 };
 
 refs.openFilmModal.addEventListener('click', toggleModal);
