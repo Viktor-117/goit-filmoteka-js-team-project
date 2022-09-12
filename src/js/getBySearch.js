@@ -78,6 +78,9 @@ async function addPagination() {
   if (totalPages === 0) {
     Notiflix.Notify.warning('Sorry, we couldnt find any movies with that name');
     return;
+  } else if (inputQuery === ``) {
+    Notiflix.Notify.warning('Please enter the name of the movie');
+    return;
   }
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
