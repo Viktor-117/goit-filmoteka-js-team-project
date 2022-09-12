@@ -1,6 +1,9 @@
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
+const refs = {
+  moviesList: document.querySelector('.film__list'),
+};
 
-export function movieTemplate(data) {
+ function movieTemplate(data) {
   console.log(data)
   let filmGenre = [];
   for (let object of data.genres) {
@@ -21,4 +24,10 @@ export function movieTemplate(data) {
               </div>
             </div>
           </li>`;
+}
+
+export function renderCollection(data) {
+  console.log(data);
+  const markup = movieTemplate(data);
+  refs.moviesList.insertAdjacentHTML('beforeend', markup);
 }
