@@ -1,6 +1,6 @@
 import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
-
+// test for deploy
 /////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
 // import { refs } from '../index.js';
 
