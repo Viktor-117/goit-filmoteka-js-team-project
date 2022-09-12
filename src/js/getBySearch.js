@@ -1,4 +1,5 @@
 import { API_KEY } from './key.js';
+import Notiflix from 'notiflix';
 
 /////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
 // import { refs } from '../index.js';
@@ -74,6 +75,10 @@ async function addPagination() {
     totalPages = res.total_pages;
     return totalPages;
   });
+  if (totalPages === 0) {
+    Notiflix.Notify.warning('Sorry, we couldnt find any movies with that name');
+    return;
+  }
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
