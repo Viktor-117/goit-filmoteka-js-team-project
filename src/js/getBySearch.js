@@ -14,6 +14,8 @@ const refs = {
 
 let currentPage = 1;
 
+let markup = ``;
+
 let totalPages = 1;
 
 async function fetchMovies(inputQuery, currentPage) {
