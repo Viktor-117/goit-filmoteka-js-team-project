@@ -14,6 +14,8 @@ const refs = {
 
 let currentPage = 1;
 
+let markup = '';
+
 let totalPages = 1;
 
 async function fetchMovies(inputQuery, currentPage) {
@@ -39,7 +41,7 @@ export default async function renderMoviesList(pageNumber) {
 
   await fetchMovies(inputQuery, currentPage).then(res => {
     if (res.results.length >= 1) {
-      let markup = res.results.map(
+      markup = res.results.map(
         ({
           id,
           title,
