@@ -61,13 +61,11 @@ export default async function renderMoviesList(pageNumber) {
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>
-          </li>`;
-        }
-      );
-
-      return markup;
-    }
-  });
+        </li>`;
+      }
+    ).join('');
+      
+  refs.moviesList.innerHTML = markup;
 }
 
 async function addPagination() {
