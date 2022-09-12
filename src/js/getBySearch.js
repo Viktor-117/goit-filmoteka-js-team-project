@@ -62,11 +62,13 @@ export default async function renderMoviesList(pageNumber) {
               </div>
             </div>
         </li>`;
-      }
-    ).join('');
+        }
+      ).join('');
       
-  refs.moviesList.innerHTML = markup;
-}
+      refs.moviesList.innerHTML = markup;
+      return markup;
+    }
+  }
 
 async function addPagination() {
   await fetchMovies(inputQuery, currentPage).then(res => {
