@@ -27,8 +27,12 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          poster_path === ' '
+            ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
+            : (poster = poster_path);
+          console.log(poster_path);
           return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" id="${id}" />
+            <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
