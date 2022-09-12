@@ -1,33 +1,49 @@
 import axios from 'axios';
-
-import { API_KEY } from '../index.js';
+import { API_KEY } from './key.js';
 import { refs } from '../index.js';
+
+const srcImgBase = 'https://image.tmdb.org/t/p/w500';
 let currentPage = 1;
 
 export async function getTrending(currentPage) {
   try {
-    return (responseTrending = await axios.get(
+    const resTrending = await axios.get(
       `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${currentPage}`
-    ));
+    );
+    return await resTrending.data;
   } catch (error) {
     console.log(error);
   }
 }
 
-// const renderTrendingList = movies => {
-//   const result = movies
-//     .map(({}) => {
-//       return `<li class="gallery__item">
-//             <img src="Film src" alt="film alt" class="img" />
+// getTrending(currentPage).then(res => {
+//   console.log(res.results.length);
+//   if (res.results.length >= 1) {
+//     const markup = res.results
+//       .map(
+//         ({
+//           id,
+//           title,
+//           original_title,
+//           poster_path,
+//           genre_ids,
+//           release_date,
+//           vote_average,
+//         }) => {
+//           return `<li class="gallery__item">
+//             <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" />
 //             <div class="item__ptext">
-//               <h2 class="item__capt">Film Name</h2>
+//               <h2 class="item__capt">${title}</h2>
 //               <div class="item__wrap">
-//                 <p class="item__genre">Genres and date</p>
-//                 <p class="item__rating">rating</p>
+//                 <p class="item__genre">${genre_ids} | ${release_date}</p>
+//                 <p class="item__rating">${vote_average}</p>
 //               </div>
 //             </div>
 //           </li>`;
-//     })
-//     .join('');
-//   refs.moviesList.insertAdjacentHTML('beforeend', result);
-// };
+//         }
+//       )
+//       .join('');
+
+//     refs.moviesList.insertAdjacentHTML('beforeend', markup);
+//   }
+// });
