@@ -1,6 +1,7 @@
 import { toggleModal } from './js/film-modal';
 import axios from 'axios';
 import { getTrending } from './js/getTrending.js';
+// import { createMarkup } from './js/markupListMovies.js';
 import pagination from './js/pagination';
 import { getGenreById } from './js/getGenreById.js';
 import { onSearch } from './js/getBySearch.js';
