@@ -3,35 +3,57 @@
     class='film-img'
     src='{{#if poster_path}}https://image.tmdb.org/t/p/w500/{{poster_path}}{{^}}./images/film.svg{{/if}}'
     alt='{{title}}'
-    width='375'
+    -width='375'
     height='478'
   />
 </div>
 <div class='modal-film__film-content'>
   <h1 class='modal-film__film-name'>{{title}}</h1>
-
-  <ul class='modal-film__film-data-list'>
-    <li class='modal-film__film-data-elem'>
-      <p class='modal-film__film-data'>Vote / Votes</p>
-      {{vote_average}}/ {{vote_count}},
-    </li>
-    <li class='modal-film__film-data-elem'>
-      <p class='modal-film__film-data'>Popularity</p>
-      {{popularity}}
-    </li>
-    <li class='modal-film__film-data-elem'>
-      <p class='modal-film__film-data'>Original Title</p>
-      {{original_title}}
-    </li>
-    <li class='modal-film__film-data-elem'>
-      <p class='modal-film__film-data'>Genre</p>
-      <ul>
-        {{#each genres}}
-  <li>{{name}}</li>
-{{~/each}}
+  <div class="modal-film__film-data-block">
+    <div class='modal-film__film-data-statick-block'>
+        <ul class='modal-film__film-data-list'>
+          <li class='modal-film__film-data-elem'>
+            <p class='modal-film__film-data'>Vote / Votes</p>
+          </li>
+          <li class='modal-film__film-data-elem'>
+            <p class='modal-film__film-data'>Popularity </p>
+           
+          </li>
+          <li class='modal-film__film-data-elem'>
+            <p class='modal-film__film-data'>Original Title </p>
+            
+          </li>
+          <li class='modal-film__film-data-elem'>
+            <p class='modal-film__film-data'>Genre</p>
+           <!-- <ul>
+              {{#each genres}}
+        <li>{{name}}</li>
+      {{~/each}}
+            </ul>-->
+          </li>
+        </ul>
+    </div>
+    <div class="modal-film__film-data-generate-block">
+      <ul class='modal-film__film-data-generate-list'>
+        <li class='modal-film__film-data-generate-elem'>
+          <p><span class="modal-film__generat-data accient"> {{vote_average}}</span> / <span class="modal-film__generat-data accient"> {{vote_count}} </span></p>
+        </li>
+        <li class='modal-film__film-data-generate-elem'>
+          <p><span class="modal-film__generat-data accient"> {{popularity}}</span></p>
+        </li>
+        <li class='modal-film__film-data-generate-elem'>
+          <p><span class="modal-film__generat-data"> {{original_title}}</span></p>
+        </li>
+        <li class='modal-film__film-data-generate-elem'>
+          <p><span class="modal-film__generat-data">{{#each genres}}
+        {{name}}
+      {{~/each}}</span></p>
+        </li>
       </ul>
-    </li>
-  </ul>
+    </div>
+  </div>
+
+
 
   <div class='modal-film__about-film'>
     <h2 class='modal-film__about'>ABOUT</h2>
