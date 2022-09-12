@@ -5,6 +5,7 @@ import { getTrending } from './js/getTrending.js';
 import pagination from './js/pagination';
 import { getGenreById } from './js/getGenreById.js';
 import { onSearch } from './js/getBySearch.js';
+import './js/scroll-button';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
