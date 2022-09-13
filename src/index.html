@@ -83,7 +83,127 @@
         </p>
       </div>
     </footer>
-    <!--Modal -->
+    <!-- -->
+    <div class="backdrop is-hidden" data-team-modal data-team-modal-close>
+      <div class="team-modal">
+        <button
+          class="btn-team-modal-close"
+          type="button"
+          data-team-modal-close-btn
+        >
+          <svg class="btn-team-modal-close__svg">
+            <use href="./images/symbol-defs.svg#icon-VectorX"></use>
+          </svg>
+        </button>
+        <p class="team-modal__text">Team:</p>
+        <p class="team-header">10 out of 10</p>
+        <ul class="team-modal-leader__list list">
+          <li class="team-modal-leader__item">
+            <img
+              src="./images/pidvysotskyi-ph.jpg"
+              alt="photo"
+              class="team-modal-leader__img"
+            />
+            <p class="team-modal-leader__name">Oleksandr Pidvysotskyi</p>
+            <p class="team-modal-leader__text">Teamlead</p>
+          </li>
+          <li class="team-modal-leader__item">
+            <img
+              src="./images/maliovanyi-ph.jpg"
+              alt="photo"
+              class="team-modal-leader__img"
+            />
+            <div class="team-modal-leader__thumb">
+              <p class="team-modal-leader__name">Bohdan Maliovanyi</p>
+              <p class="team-modal-leader__text">Scrum master</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="team-modal-dev__list list">
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/gurgu-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Pavlo Gurgu</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/hushchin-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Viktor Hushchin</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/horshkoder-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Oleksandr Horshkoder</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/panivnyk-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Dmytro Panivnyk</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/podvalnyi-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Ihor Podvalnyi</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/shperun-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Marian Shperun</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/cat.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Daniil Sorokin</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/cat.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Ivan Shalnov</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+          <li class="team-modal-dev__item">
+            <img
+              src="./images/tykhonenko-ph.jpg"
+              alt="photo"
+              class="team-modal-dev__img"
+            />
+            <p class="team-modal-dev__name">Maksym Tykhonenko</p>
+            <p class="team-modal-dev__text">Developer</p>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="backdrop is-hidden" data-film-modal data-modal-close>
       <div class="modal-film">
@@ -93,12 +213,49 @@
           </svg>
         </button>
         <div class="modal-film__film-card" data-film-card>
-          <!-- -->
-        </div>
+          <div class="modal-film__img-block">
+            <img class="film-img" alt="film poster" width="375" height="478" />
+          </div>
+          <div class="modal-film__film-content">
+            <h1 class="modal-film__film-name">A FISTFUL OF LEAD</h1>
+            <ul class="modal-film__film-data-list">
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Vote / Votes</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Popularity</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Original Title</p>
+              </li>
+              <li class="modal-film__film-data-elem">
+                <p class="modal-film__film-data">Genre</p>
+              </li>
+            </ul>
 
-        <div class="modal-film__btn-grup">
-          <button class="modal-film__btn" type="button">ADD TO WATCHED</button>
-          <button class="modal-film__btn" type="button">ADD TO QUEUE</button>
+            <div class="modal-film__about-film">
+              <h2 class="modal-film__about">ABOUT</h2>
+              <p class="modal-film__about-text">
+                Four of the West’s most infamous outlaws assemble to steal a
+                huge stash of gold from the most corrupt settlement of the gold
+                rush towns. But not all goes to plan one is killed and the other
+                three escapes with bags of gold hide out in the abandoned gold
+                mine where they happen across another gang of three – who
+                themselves were planning to hit the very same bank! As tensions
+                rise, things go from bad to worse as they realise the bags of
+                gold are filled with lead... they’ve been double crossed – but
+                by who and how?
+              </p>
+            </div>
+            <div class="modal-film__btn-grup">
+              <button class="modal-film__btn" type="button">
+                ADD TO WATCHED
+              </button>
+              <button class="modal-film__btn" type="button">
+                ADD TO QUEUE
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
