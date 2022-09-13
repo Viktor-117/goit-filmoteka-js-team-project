@@ -22,7 +22,7 @@ function createMarkup(res) {
           vote_average,
         }) => {
           return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster_path}" alt="${id}-${original_title}" class="img" />
+            <img src="${srcImgBase}${poster_path}" alt="${id}-${original_title}" class="img" data-modal-open/>
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">

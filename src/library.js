@@ -8,6 +8,7 @@ import {
 } from './js/localStorageApi';
 import Loading from './js/loading';
 import { loadingOn, loadingOff } from './js/loading';
+import { toggleModal, showFilmInfo, closeFilmModal } from './js/film-modal';
 
 // ==============Додає ключ і значення (Тимчасово!)
 // JSON.stringify(localStorage.setItem('watchedMovies', '[ 760741]'));
@@ -19,6 +20,7 @@ const refs = {
   queueBtn: document.querySelector('.queue_btn'),
   linkToTeam: document.querySelector('.footer__link'),
   moviesList: document.querySelector('.film__list'),
+
 };
 
 // ==============render info page================
