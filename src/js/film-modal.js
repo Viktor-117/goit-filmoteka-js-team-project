@@ -7,28 +7,29 @@ const refs = {
   filmCard: document.querySelector('[data-film-card]'),
 };
 
-
-refs.openFilmModal.addEventListener('click', toggleModal);
+refs.openFilmModal.addEventListener('click', onCardClick);
 refs.closeFilmModal.addEventListener('click', toggleModal);
 
 export function closeFilmModal(e) {
   if (e.key === 'Escape') {
-    toggleModal()
-   window.removeEventListener('keydown', closeFilmModal)
+    toggleModal();
+    window.removeEventListener('keydown', closeFilmModal);
   }
 }
 
-export function  toggleModal() {
+export function toggleModal() {
   refs.filmModal.classList.toggle('is-hidden');
   window.addEventListener('keydown', closeFilmModal);
-
 }
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
   refs.filmCard.innerHTML = markup;
   return Promise.resolve();
 }
+function onCardClick(event) {
+  const filmId = event.target.getAttribute('id');
+  filmId && showFilmInfo(filmId);
+}
 export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(toggleModal).catch(console.log);
 }
-showFilmInfo(777);
