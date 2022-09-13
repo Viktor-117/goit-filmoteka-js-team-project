@@ -1,11 +1,10 @@
 import { toggleModal, showFilmInfo, closeFilmModal } from './js/film-modal';
-
+import { getGenres } from './js/getGenres';
 export const API_KEY = '520faa847257d57af54017c37ef43fe0';
 import axios from 'axios';
 import { getTrending } from './js/getTrending.js';
 // import { createMarkup } from './js/markupListMovies.js';
 import pagination from './js/pagination';
-import { getGenreById } from './js/getGenreById.js';
 import { onSearch } from './js/getBySearch.js';
 import './js/scroll-button';
 
