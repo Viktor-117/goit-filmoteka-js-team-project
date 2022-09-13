@@ -10,7 +10,11 @@ export default Loading;
 import Loading from './loading';
 
 * 2) там де потрібен запуск Loading, вставляємо:
-Loading.standard('Loading...');
+Loading.standard('Loading...', {
+  svgColor: '#ff001b',
+  messageColor: '#ff001b',
+  backgroundColor: 'none',
+});
 
 * де потрібно зупинити Loading, вставляемо:
 Loading.remove();
