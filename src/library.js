@@ -8,6 +8,7 @@ import {
 } from './js/localStorageApi';
 import Loading from './js/loading';
 import { loadingOn, loadingOff } from './js/loading';
+import { toggleModal, showFilmInfo, closeFilmModal } from './js/film-modal';
 import { openTeamModal, closeTeamModal } from './js/team-modal';
 
 // ==============Додає ключ і значення (Тимчасово!)
