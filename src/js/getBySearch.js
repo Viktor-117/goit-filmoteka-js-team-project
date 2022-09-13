@@ -54,6 +54,7 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          let poster = '';
           poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
