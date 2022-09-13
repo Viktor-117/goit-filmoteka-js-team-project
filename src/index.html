@@ -16,7 +16,7 @@
     <script src="./js/paginationLibrary.js"></script>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="top">
       <div class="container">
         <nav class="nav__menu">
           <a class="logo__link" href="./index.html">
@@ -58,6 +58,15 @@
       </div>
     </header>
     <main>
+      <button type="button" class="scroll-up__btn is-hidden">
+        <img
+          src="./images/up-arrow.svg"
+          alt="arrow up"
+          class="scroll-up__img"
+          width="30"
+          height="30"
+        />
+      </button>
       <div class="container movies__container">
         <ul class="film__list" data-modal-open></ul>
       </div>
@@ -203,7 +212,7 @@
             <use href="./images/symbol-defs.svg#icon-VectorX"></use>
           </svg>
         </button>
-        <div class="modal-film__film-card">
+        <div class="modal-film__film-card" data-film-card>
           <div class="modal-film__img-block">
             <img class="film-img" alt="film poster" width="375" height="478" />
           </div>

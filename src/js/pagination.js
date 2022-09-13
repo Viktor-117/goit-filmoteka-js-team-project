@@ -1,4 +1,8 @@
+import { getGenresArray } from './getGenresArray';
 import { getTrending } from './getTrending';
+import Loading from './loading';
+import { loadingOn, loadingOff } from './loading';
+import { getGenreById } from './getGenreById.js';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -27,12 +31,17 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          let poster = '';
+          poster_path === null
+            ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
+            : (poster = poster_path);
+          console.log(poster_path);
           return `<li class="gallery__item">
-            <img src="${srcImgBase}${poster_path}" alt="${original_title}" class="img" />
+            <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genre_ids} | ${release_date}</p>
+                <p class="item__genre">${genresMarkup} | ${release_date}</p>
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>
@@ -47,6 +56,12 @@ export default async function renderMoviesList(pageNumber) {
 
 async function addPagination() {
   await renderMoviesList(1);
+  $(`#pagination-container`).addHook('beforePaging', function () {
+    loadingOn();
+  });
+  $(`#pagination-container`).addHook('afterPaging', function () {
+    loadingOff();
+  });
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
@@ -58,10 +73,12 @@ async function addPagination() {
     pageSize: 20,
     callback: async function (data, pagination) {
       await renderMoviesList(pagination.pageNumber);
+
       // template method of yourself
       var html = markup;
       $(`.film__list`).html(html);
     },
   });
 }
+
 addPagination();
