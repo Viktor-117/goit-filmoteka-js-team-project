@@ -1,5 +1,6 @@
 import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
+import Loading from './loading';
 // test for deploy
 /////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
 // import { refs } from '../index.js';
@@ -85,6 +86,7 @@ async function addPagination() {
     Notiflix.Notify.warning('Please enter the name of the movie');
     return;
   }
+  Loading.standard('Loading...');
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
@@ -101,4 +103,11 @@ async function addPagination() {
       $(`.film__list`).html(html);
     },
   });
+  $(`#pagination-container`).addHook('beforePaging', function () {
+    Loading.standard('Loading...');
+  });
+  $(`#pagination-container`).addHook('afterPaging', function () {
+    Loading.remove();
+  });
+  Loading.remove();
 }
