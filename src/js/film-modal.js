@@ -20,9 +20,11 @@ export function closeFilmModal(e) {
 export function toggleModal() {
   refs.filmModal.classList.toggle('is-hidden');
   window.addEventListener('keydown', closeFilmModal);
+
 }
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
+  //refs.filmCard.insertAdjacentHTML("afterbegin", markup);
   refs.filmCard.innerHTML = markup;
   return Promise.resolve();
 }
