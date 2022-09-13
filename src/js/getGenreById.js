@@ -1,8 +1,4 @@
-import { getGenresArray } from './getGenresArray.js';
-
-const genresArray = getGenresArray();
-
-export function getGenreById(genreId) {
+export function getGenreById(genreId, genresArray) {
   const genres = genresArray.find(option => option.id === genreId);
   return genres.name;
 }

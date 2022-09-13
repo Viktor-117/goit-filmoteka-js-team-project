@@ -2,6 +2,8 @@ import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
 import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
+import { getFullQueryResponse } from './getFullRespose.js';
+import { getGenreById } from './getGenreById.js';
 // test for deploy
 /////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
 // import { refs } from '../index.js';
@@ -21,7 +23,7 @@ let markup = '';
 
 let totalPages = 1;
 
-async function fetchMovies(inputQuery, currentPage) {
+export async function fetchMovies(inputQuery, currentPage) {
   const mainUrl = `https://api.themoviedb.org/3/search/movie`;
   const filters = `?api_key=${API_KEY}&query=${inputQuery}&page=${currentPage}`;
   const response = await fetch(`${mainUrl}${filters}`);
@@ -35,16 +37,20 @@ export async function onSearch(event) {
   event.preventDefault();
 
   inputQuery = refs.searchInput.value;
-  console.log(inputQuery);
+  // console.log(inputQuery);
   addPagination();
 }
 
 export default async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
 
-  await fetchMovies(inputQuery, currentPage).then(res => {
-    if (res.results.length >= 1) {
-      markup = res.results.map(
+  await getFullQueryResponse(inputQuery, currentPage).then(res => {
+    const moviesResult = res[1].results;
+    // console.log(moviesResult);
+    const genresList = res[0].genres;
+    // console.log(genresList);
+    if (moviesResult.length >= 1) {
+      markup = moviesResult.map(
         ({
           id,
           title,
@@ -54,17 +60,28 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          const genres = genre_ids.map(item => {
+            return getGenreById(item, genresList);
+          });
+
+          let genresMarkup = '';
+          if (genres.length < 3) {
+            genresMarkup = genres.join();
+          } else {
+            genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
+          }
+
           let poster = '';
           poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
-          console.log(poster_path);
+
           return `<li class="gallery__item">
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genre_ids} | ${release_date}</p>
+                <p class="item__genre">${genresMarkup} | ${release_date}</p>
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>

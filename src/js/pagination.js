@@ -1,8 +1,9 @@
-import { getGenresArray } from './getGenresArray';
 import { getTrending } from './getTrending';
 import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
 import { getGenreById } from './getGenreById.js';
+import { getGenres } from './getGenres.js';
+import { getFullTrendingResponce } from './getFullRespose';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -19,9 +20,11 @@ export default async function renderMoviesList(pageNumber) {
     totalPages = res.total_pages;
     return totalPages;
   });
-  await getTrending(currentPage).then(res => {
-    if (res.results.length >= 1) {
-      markup = res.results.map(
+  await getFullTrendingResponce(currentPage).then(res => {
+    const moviesResult = res[1].results;
+    const genresList = res[0].genres;
+    if (moviesResult.length >= 1) {
+      markup = moviesResult.map(
         ({
           id,
           title,
@@ -31,6 +34,17 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          const genres = genre_ids.map(item => {
+            return getGenreById(item, genresList);
+          });
+
+          let genresMarkup = '';
+          if (genres.length < 3) {
+            genresMarkup = genres.join();
+          } else {
+            genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
+          }
+
           let poster = '';
           poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
@@ -40,7 +54,7 @@ export default async function renderMoviesList(pageNumber) {
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genre_ids} | ${release_date}</p>
+                <p class="item__genre">${genresMarkup} | ${release_date}</p>
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>
