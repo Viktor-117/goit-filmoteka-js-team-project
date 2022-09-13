@@ -7,6 +7,7 @@ import {
   checkLocalStorageOnQueue,
 } from './js/localStorageApi';
 import Loading from './js/loading';
+import { loadingOn, loadingOff } from './js/loading';
 
 // ==============Додає ключ і значення (Тимчасово!)
 // JSON.stringify(localStorage.setItem('watchedMovies', '[ 760741]'));
@@ -38,14 +39,14 @@ function renderPage() {
     refs.moviesList.innerHTML = '';
 
     for (let id of idWatch) {
-      Loading.standard('Loading...');
+      loadingOn();
       getById(id)
         .then(data => {
           renderCollection(data);
           addEfectRenderer();
         })
         .finally(() => {
-          Loading.remove();
+          loadingOff();
         });
     }
   }
@@ -68,7 +69,7 @@ function clickOnQueueBtn() {
   } else {
     const idWatch = JSON.parse(localStorage.getItem('moviesInQueue'));
     refs.moviesList.innerHTML = '';
-    Loading.standard('Loading...');
+    loadingOn();
 
     for (let id of idWatch) {
       getById(id)
@@ -77,7 +78,7 @@ function clickOnQueueBtn() {
           addEfectRenderer();
         })
         .finally(() => {
-          Loading.remove();
+          loadingOff();
         });
     }
   }

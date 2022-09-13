@@ -1,5 +1,6 @@
 import { getTrending } from './getTrending';
 import Loading from './loading';
+import { loadingOn, loadingOff } from './loading';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -28,6 +29,7 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          let poster = '';
           poster_path === ' '
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
@@ -53,10 +55,10 @@ export default async function renderMoviesList(pageNumber) {
 async function addPagination() {
   await renderMoviesList(1);
   $(`#pagination-container`).addHook('beforePaging', function () {
-    Loading.standard('Loading...');
+    loadingOn();
   });
   $(`#pagination-container`).addHook('afterPaging', function () {
-    Loading.remove();
+    loadingOff();
   });
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
