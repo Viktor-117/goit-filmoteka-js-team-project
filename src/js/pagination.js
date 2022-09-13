@@ -1,4 +1,3 @@
-import { getGenresArray } from './getGenresArray';
 import { getTrending } from './getTrending';
 import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
