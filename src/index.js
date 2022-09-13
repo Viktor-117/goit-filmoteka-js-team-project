@@ -18,5 +18,3 @@ const refs = {
 };
 
 export { refs };
-
-getGenreById(12).then(genre => console.log(genre));

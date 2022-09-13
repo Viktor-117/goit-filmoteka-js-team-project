@@ -1,9 +1,8 @@
-import { getGenres } from './getGenres.js';
+import { getGenresArray } from './getGenresArray.js';
+
+const genresArray = getGenresArray();
 
 export function getGenreById(genreId) {
-  return getGenres()
-    .then(({ genres }) => {
-      return genres.find(genre => genre.id === genreId);
-    })
-    .then(genre => genre.name);
+  const genres = genresArray.find(option => option.id === genreId);
+  return genres.name;
 }
