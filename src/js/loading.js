@@ -2,8 +2,8 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export function loadingOn() {
   Loading.standard('Loading...', {
-    svgColor: '#ff001b',
-    messageColor: '#ff001b',
+    svgColor: '#ff6b01',
+    messageColor: '#ff6b01',
     backgroundColor: 'none',
   });
 }

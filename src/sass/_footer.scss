@@ -41,7 +41,11 @@
   color: var(--orange-text-color);
 }
 
-.footer__link {
+.team-modal-btn {
   color: #545454;
   text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }

@@ -77,30 +77,29 @@
         <p class="footer__text">&#169; 2020 | All Rights Reserved |</p>
         <p class="footer__text">
           Developed with <span class="heart">&#10084;</span> by
-          <a class="footer__link" href="">GoIT Students</a>
+          <button type="button" class="team-modal-btn" data-team-modal-open>
+            GoIT Students
+          </button>
         </p>
       </div>
     </footer>
     <!--Modal -->
+
     <div class="backdrop is-hidden" data-film-modal data-modal-close>
       <div class="modal-film">
         <button class="btn-modal-close" type="button" data-modal-close>
-          <svg class="btn-modal-close__svg" >
+          <svg class="btn-modal-close__svg">
             <use href="./images/symbol-defs.svg#icon-VectorX"></use>
           </svg>
         </button>
         <div class="modal-film__film-card" data-film-card>
           <!-- -->
-         </div>
+        </div>
 
-            <div class="modal-film__btn-grup">
-              <button class="modal-film__btn" type="button">
-                ADD TO WATCHED
-              </button>
-              <button class="modal-film__btn" type="button">
-                ADD TO QUEUE
-              </button>
-            </div>
+        <div class="modal-film__btn-grup">
+          <button class="modal-film__btn" type="button">ADD TO WATCHED</button>
+          <button class="modal-film__btn" type="button">ADD TO QUEUE</button>
+        </div>
       </div>
     </div>
   </body>

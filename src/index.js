@@ -6,6 +6,7 @@ import { getTrending } from './js/getTrending.js';
 // import { createMarkup } from './js/markupListMovies.js';
 import pagination from './js/pagination';
 import { onSearch } from './js/getBySearch.js';
+import { openTeamModal, closeTeamModal } from './js/team-modal';
 import './js/scroll-button';
 
 const refs = {

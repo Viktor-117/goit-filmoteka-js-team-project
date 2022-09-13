@@ -31,28 +31,16 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
-          const genres = genre_ids.map(item => {
-            return getGenreById(item);
-          });
-          let genresMarkup = '';
-
-          if (genres.length < 3) {
-            genresMarkup = genres.join();
-          } else {
-            genresMarkup = `${genres[0]},${genres[1]}, Others`;
-          }
-          // console.log(genresMarkup);
           let poster = '';
-          poster_path === ' '
+          poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
-          console.log(poster_path);
           return `<li class="gallery__item">
             <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genresMarkup} | ${release_date}</p>
+                <p class="item__genre">${genre_ids} | ${release_date}</p>
                 <p class="item__rating">${vote_average}</p>
               </div>
             </div>
