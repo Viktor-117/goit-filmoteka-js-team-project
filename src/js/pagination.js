@@ -1,4 +1,5 @@
 import { getTrending } from './getTrending';
+import Loading from './loading';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -51,6 +52,12 @@ export default async function renderMoviesList(pageNumber) {
 
 async function addPagination() {
   await renderMoviesList(1);
+  $(`#pagination-container`).addHook('beforePaging', function () {
+    Loading.standard('Loading...');
+  });
+  $(`#pagination-container`).addHook('afterPaging', function () {
+    Loading.remove();
+  });
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
@@ -62,10 +69,12 @@ async function addPagination() {
     pageSize: 20,
     callback: async function (data, pagination) {
       await renderMoviesList(pagination.pageNumber);
+
       // template method of yourself
       var html = markup;
       $(`.film__list`).html(html);
     },
   });
 }
+
 addPagination();
