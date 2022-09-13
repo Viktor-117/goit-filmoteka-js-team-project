@@ -10,9 +10,9 @@ import { loadingOn, loadingOff } from './js/loading';
 
 // ==============Додає ключ і значення (Тимчасово!)
 // JSON.stringify(localStorage.setItem('watchedMovies', '[ 760741]'));
-JSON.stringify(
-  localStorage.setItem('moviesInQueue', '[616037, 361743, 760741]')
-);
+// JSON.stringify(
+//   localStorage.setItem('moviesInQueue', '[616037, 361743, 760741]')
+// );
 const refs = {
   watchedBtn: document.querySelector('.watched_btn'),
   queueBtn: document.querySelector('.queue_btn'),

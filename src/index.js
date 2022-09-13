@@ -17,3 +17,35 @@ const refs = {
 };
 
 export { refs };
+
+const modalWindowRef = document.querySelector('.modal-film');
+
+modalWindowRef.addEventListener('click', onModalWindowClick);
+console.log(localStorage.getItem('watchedMovies'));
+
+let watchedMovies = [];
+let moviesInQueue = [];
+
+if (localStorage.getItem('watchedMovies') === null) {
+  watchedMovies = [];
+} else {
+  watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
+}
+
+if (localStorage.getItem('moviesInQueue') === null) {
+  moviesInQueue = [];
+} else {
+  moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
+}
+
+function onModalWindowClick(evt) {
+  const movieId = evt.currentTarget.id;
+  if (evt.target.id === 'watched') {
+    watchedMovies.push(movieId);
+  } else if (evt.target.id === 'queue') {
+    moviesInQueue.push(movieId);
+  }
+
+  localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+  localStorage.setItem('moviesInQueue', JSON.stringify(moviesInQueue));
+}

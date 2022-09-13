@@ -5,6 +5,7 @@ const refs = {
   closeFilmModal: document.querySelector('[data-modal-close]'),
   filmModal: document.querySelector('[data-film-modal]'),
   filmCard: document.querySelector('[data-film-card]'),
+  modalFilm: document.querySelector('.modal-film'),
 };
 
 refs.openFilmModal.addEventListener('click', onCardClick);
@@ -20,17 +21,16 @@ export function closeFilmModal(e) {
 export function toggleModal() {
   refs.filmModal.classList.toggle('is-hidden');
   window.addEventListener('keydown', closeFilmModal);
-
 }
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
-  //refs.filmCard.insertAdjacentHTML("afterbegin", markup);
   refs.filmCard.innerHTML = markup;
   return Promise.resolve();
 }
 function onCardClick(event) {
   const filmId = event.target.getAttribute('id');
   filmId && showFilmInfo(filmId);
+  refs.modalFilm.id = filmId;
 }
 export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(toggleModal).catch(console.log);

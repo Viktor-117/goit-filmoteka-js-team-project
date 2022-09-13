@@ -5,8 +5,6 @@ const refs = {
   closeTeamModalBtn: document.querySelector('.btn-team-modal-close__svg'),
 };
 
-console.log(refs.openTeamModal);
-
 refs.openTeamModal.addEventListener('click', openTeamModal);
 
 export function openTeamModal() {
