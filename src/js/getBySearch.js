@@ -122,6 +122,7 @@ async function addPagination() {
       await renderMoviesList(pagination.pageNumber);
       var html = markup;
       $(`.film__list`).html(html);
+      loadingOff();
     },
   });
 
