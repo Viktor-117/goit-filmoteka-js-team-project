@@ -43,7 +43,6 @@ function onModalWindowClick(evt) {
   const movieId = evt.currentTarget.id;
   if (evt.target.id === 'watched') {
     if (watchedMovies.includes(String(movieId))) {
-      console.log(movieId);
       watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
     } else {
       watchedMovies.push(movieId);
