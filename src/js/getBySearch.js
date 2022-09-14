@@ -124,11 +124,10 @@ async function addPagination() {
       $(`.film__list`).html(html);
     },
   });
+
   $(`#pagination-container`).addHook('beforePaging', function () {
     loadingOn();
   });
-  $(`#pagination-container`).addHook('afterPaging', function () {
-    loadingOff();
-  });
+
   loadingOff();
 }
