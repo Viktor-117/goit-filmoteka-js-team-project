@@ -25,7 +25,7 @@ function renderInfoPage() {
   refs.moviesList.innerHTML = '';
   const infoPage = document.createElement('strong');
   infoPage.classList.add('info-text');
-  infoPage.innerHTML = `No movies selected <a class="info-text__link" href="/">Add a movie</a>`;
+  infoPage.innerHTML = `No movies selected <a class="info-text__link" href="./index.html">Add a movie</a>`;
 
   return refs.moviesList.append(infoPage);
 }

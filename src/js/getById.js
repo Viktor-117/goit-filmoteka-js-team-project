@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_KEY = '520faa847257d57af54017c37ef43fe0';
+import {API_KEY} from './key'
 
 export function getById(movieId) {
   return axios
