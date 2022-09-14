@@ -4,7 +4,6 @@ const refs = {
 };
 
 function movieTemplate(data) {
-  console.log(data)
   let filmGenre = [];
   for (let object of data.genres) {
     filmGenre.push(object.name);

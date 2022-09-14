@@ -1,4 +1,3 @@
-// import { getTrending } from './js/getTrending';
 import { getById } from './js/getById';
 import { addEfectRenderer } from './js/effect_for_cart';
 import { renderCollection } from './js/templates/movieTemplate';
@@ -59,7 +58,6 @@ function clickOnWatchedBtn() {
 }
 
 function clickOnQueueBtn() {
-  console.log('queue');
   refs.watchedBtn.classList.remove('current');
   refs.queueBtn.classList.add('current');
 
