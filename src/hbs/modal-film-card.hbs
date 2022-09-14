@@ -2,6 +2,7 @@
   <img
     class='film-img'
     src='{{#if poster_path}}https://image.tmdb.org/t/p/w500/{{poster_path}}{{^}}./images/film.svg{{/if}}'
+     onerror="this.onerror=null;this.src='https://image.tmdb.org/t/p/w500/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg'"
     alt='{{title}}'
     -width='375'
     height='478'
@@ -41,9 +42,10 @@
           <p><span class="modal-film__generat-data"> {{original_title}}</span></p>
         </li>
         <li class='modal-film__film-data-generate-elem'>
-          <p><span class="modal-film__generat-data">{{#each genres}}
-        {{name}}
-      {{~/each}}</span></p>
+          <p><span class="modal-film__generat-data"> {{#if genres}}{{#each genres}}
+        {{name}}{{#unless @last}},{{/unless}}
+      {{~/each}}{{else}}<span>No genres</span>
+          {{/if}}</span></p>
         </li>
       </ul>
     </div>
@@ -52,7 +54,7 @@
   <div class='modal-film__about-film'>
     <h2 class='modal-film__about'>ABOUT</h2>
     <p class='modal-film__about-text'>
-      {{overview}}
+      {{#if overview}}{{overview}}{{else}}<span>No data</span>{{/if}}
     </p>
   </div>
  <div class="modal-film__btn-grup">
