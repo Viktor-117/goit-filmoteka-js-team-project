@@ -3,7 +3,6 @@ import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
 import { getGenreById } from './getGenreById.js';
 import { getGenres } from './getGenres.js';
-import { getFullTrendingResponce } from './getFullRespose';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -59,7 +58,6 @@ export default async function renderMoviesList(pageNumber) {
           release_date === ''
             ? (relDate = 'No date')
             : (relDate = release_date.slice(0, 4));
-
           return `<li class="gallery__item">
             <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
@@ -93,9 +91,7 @@ async function addPagination() {
     },
     pageSize: 1,
     callback: async function (data, pagination) {
-      if (pagination.pageNumber > 1) {
-        await renderMoviesList(pagination.pageNumber);
-      }
+      await renderMoviesList(pagination.pageNumber);
 
       // template method of yourself
       var html = markup;

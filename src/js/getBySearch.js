@@ -2,7 +2,6 @@ import { API_KEY } from './key.js';
 import Notiflix from 'notiflix';
 import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
-import { getFullQueryResponse } from './getFullRespose.js';
 import { getGenreById } from './getGenreById.js';
 
 const refs = {
@@ -40,9 +39,8 @@ export async function onSearch(event) {
 export default async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
 
-  await getFullQueryResponse(inputQuery, currentPage).then(res => {
-    const moviesResult = res[1].results;
-    const genresList = res[0].genres;
+  await fetchMovies(inputQuery, currentPage).then(res => {
+    const moviesResult = res.results;
     if (moviesResult.length >= 1) {
       markup = moviesResult.map(
         ({
@@ -54,6 +52,7 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          const genresList = JSON.parse(localStorage.getItem('genres'));
           const genres = genre_ids.map(item => {
             return getGenreById(item, genresList);
           });
@@ -76,7 +75,6 @@ export default async function renderMoviesList(pageNumber) {
           release_date === ''
             ? (relDate = 'No date')
             : (relDate = release_date.slice(0, 4));
-
           return `<li class="gallery__item">
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
