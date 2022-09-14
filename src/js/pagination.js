@@ -83,9 +83,7 @@ async function addPagination() {
   $(`#pagination-container`).addHook('beforePaging', function () {
     loadingOn();
   });
-  $(`#pagination-container`).addHook('afterPaging', function () {
-    loadingOff();
-  });
+
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
@@ -103,6 +101,7 @@ async function addPagination() {
       // template method of yourself
       var html = markup;
       $(`.film__list`).html(html);
+      loadingOff();
     },
   });
 }
