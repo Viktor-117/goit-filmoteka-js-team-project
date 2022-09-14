@@ -39,7 +39,9 @@ export default async function renderMoviesList(pageNumber) {
           });
 
           let genresMarkup = '';
-          if (genres.length < 3) {
+          if (genres.length === 0) {
+            genresMarkup = 'No genres';
+          } else if (genres.length < 3) {
             genresMarkup = genres.join();
           } else {
             genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
@@ -54,7 +56,10 @@ export default async function renderMoviesList(pageNumber) {
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genresMarkup} | ${release_date}</p>
+                <p class="item__genre">${genresMarkup} | ${release_date.slice(
+            0,
+            4
+          )}</p>
               </div>
             </div>
           </li>`;
