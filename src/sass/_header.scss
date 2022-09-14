@@ -75,6 +75,7 @@
   font-size: 14px;
   width: 100%;
   line-height: 1.14;
+  margin-bottom: 20px;
 }
 
 .input:focus {
@@ -107,4 +108,13 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.searchErrorNotif{
+  color: var(--searching-error-notif-color);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
 }

@@ -11,6 +11,7 @@ const refs = {
   summitButton: document.querySelector('.submit-btn'),
   linkToTeam: document.querySelector('.footer__link'),
   moviesList: document.querySelector('.film__list'),
+  searchErrorNotif: document.querySelector('#searchErrorNotif'),
 };
 
 let currentPage = 1;
@@ -97,14 +98,13 @@ async function addPagination() {
     return totalPages;
   });
   if (totalPages === 0) {
-    Notiflix.Notify.warning(
-      'Search result not successful. Enter the correct movie name and try again'
-    );
+    refs.searchErrorNotif.textContent = "Search result not successful. Enter the correct movie name and try again";
     return;
   } else if (inputQuery === ``) {
-    Notiflix.Notify.warning('Please enter the name of the movie');
+    refs.searchErrorNotif.textContent = "Please enter the name of the movie";
     return;
   }
+  refs.searchErrorNotif.textContent = "";
   loadingOn();
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
