@@ -40,7 +40,7 @@ export default async function renderMoviesList(pageNumber) {
           const genres = genre_ids.map(item => {
             return getGenreById(item, genresList);
           });
-
+          // check for genres available and formatting their
           let genresMarkup = '';
           if (genres.length === 0) {
             genresMarkup = 'No genres';
@@ -49,11 +49,15 @@ export default async function renderMoviesList(pageNumber) {
           } else {
             genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
           }
-
+          // check for poster available
           let poster = '';
           poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
+          // check for the presence of a date
+          release_date === null
+            ? (release_date = release_date)
+            : (release_date = 'N/A');
           return `<li class="gallery__item">
             <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
