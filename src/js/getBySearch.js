@@ -72,15 +72,17 @@ export default async function renderMoviesList(pageNumber) {
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
           // check for the presence of a date
+          let relDate = '';
           release_date === ''
-            ? (release_date = 'No date')
-            : (release_date = release_date.slice(0, 4));
+            ? (relDate = 'No date')
+            : (relDate = release_date.slice(0, 4));
+
           return `<li class="gallery__item">
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genresMarkup} | ${release_date}</p>
+                <p class="item__genre">${genresMarkup} | ${relDate}</p>
               </div>
             </div>
         </li>`;
