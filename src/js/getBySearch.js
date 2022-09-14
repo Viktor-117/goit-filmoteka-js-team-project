@@ -57,7 +57,7 @@ export default async function renderMoviesList(pageNumber) {
           const genres = genre_ids.map(item => {
             return getGenreById(item, genresList);
           });
-
+          // check for genres available and formatting their
           let genresMarkup = '';
           if (genres.length === 0) {
             genresMarkup = 'No genres';
@@ -66,12 +66,15 @@ export default async function renderMoviesList(pageNumber) {
           } else {
             genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
           }
-
+          // check for poster available
           let poster = '';
           poster_path === null
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
-
+          // check for the presence of a date
+          release_date === null
+            ? (release_date = release_date)
+            : (release_date = 'N/A');
           return `<li class="gallery__item">
             <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
@@ -81,7 +84,6 @@ export default async function renderMoviesList(pageNumber) {
             0,
             4
           )}</p>
-                <p class="item__rating">${vote_average}</p>
               </div>
             </div>
         </li>`;
@@ -98,13 +100,14 @@ async function addPagination() {
     return totalPages;
   });
   if (totalPages === 0) {
-    refs.searchErrorNotif.textContent = "Search result not successful. Enter the correct movie name and try again";
+    refs.searchErrorNotif.textContent =
+      'Search result not successful. Enter the correct movie name and try again';
     return;
   } else if (inputQuery === ``) {
-    refs.searchErrorNotif.textContent = "Please enter the name of the movie";
+    refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
     return;
   }
-  refs.searchErrorNotif.textContent = "";
+  refs.searchErrorNotif.textContent = '';
   loadingOn();
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
