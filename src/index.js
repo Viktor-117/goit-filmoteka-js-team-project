@@ -41,19 +41,16 @@ if (localStorage.getItem('moviesInQueue') === null) {
 
 function onModalWindowClick(evt) {
   const movieId = evt.currentTarget.id;
-  const localStorageWatched = JSON.parse(localStorage.getItem('watchedMovies'));
-  const localStorageQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
   if (evt.target.id === 'watched') {
-    console.log(localStorageWatched.includes(String(movieId)));
-    if (localStorageWatched.includes(String(movieId))) {
+    if (watchedMovies.includes(String(movieId))) {
       console.log(movieId);
-      localStorage.removeItem('watchedMovies', movieId);
+      watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
     } else {
       watchedMovies.push(movieId);
     }
   } else if (evt.target.id === 'queue') {
-    if (localStorageQueue.includes(String(evt.target.id))) {
-      localStorageQueue.splice(localStorageQueue.indexOf(evt.target.id), 1);
+    if (moviesInQueue.includes(String(movieId))) {
+      moviesInQueue.splice(moviesInQueue.indexOf(movieId), 1);
     } else {
       moviesInQueue.push(movieId);
     }
