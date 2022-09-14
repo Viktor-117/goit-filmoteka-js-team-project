@@ -7,6 +7,7 @@ const refs = {
   filmModal: document.querySelector('[data-film-modal]'),
   filmCard: document.querySelector('[data-film-card]'),
   modalFilm: document.querySelector('.modal-film'),
+  addToWatchedBtn: document.querySelector('.modal-film'),
 };
 
 refs.openFilmModal.addEventListener('click', onCardClick);
@@ -43,16 +44,43 @@ export function closeFilmModal(e) {
 //   window.addEventListener('keydown', closeFilmModal);
 // }
 function renderFilmInfo(filmData) {
+  const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
+  const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
   const markup = filmCardTemplate(filmData);
+
   refs.filmCard.innerHTML = markup;
+  const watchedButton = refs.filmCard.querySelector('#watched');
+  if (watchedMovies.includes(String(filmData.id))) {
+    watchedButton.textContent = 'REMOVE FROM WATCHED';
+  }
+  const queuedButton = refs.filmCard.querySelector('#queue');
+  if (moviesInQueue.includes(String(filmData.id))) {
+    queuedButton.textContent = 'REMOVE FROM QUEUE';
+  }
+
+  // console.log(watchedButton);
   return Promise.resolve();
 }
+
 function onCardClick(event) {
-  const filmId = event.target.getAttribute('id');
-  filmId && showFilmInfo(filmId);
-  refs.modalFilm.id = filmId;
-  openFilmModal();
+  if (event.target.className === 'img') {
+    // console.log(event.target.id);
+    const filmId = event.target.getAttribute('id');
+    filmId && showFilmInfo(filmId);
+    refs.modalFilm.id = filmId;
+    openFilmModal();
+    modalBtnChange(filmId);
+  }
 }
 export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
+}
+
+function modalBtnChange(id) {
+  const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
+  const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
+  // if (watchedMovies.includes(id)) {
+  //   document.querySelector('#watched').textContent = 'REMOVE FROM WATCHED';
+  //   // watchedMovies.splice(watchedMovies.indexOf(id), 1);
+  // }
 }
