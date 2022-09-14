@@ -75,8 +75,8 @@ export default async function renderMoviesList(pageNumber) {
           release_date === ''
             ? (relDate = 'No date')
             : (relDate = release_date.slice(0, 4));
-          return `<li class="gallery__item">
-            <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img" id="${id}" />
+          return `<li class="gallery__item" >
+            <img src="https://image.tmdb.org/t/p/w500${poster}" alt="${original_title}" class="img"  id="${id}"/>
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
