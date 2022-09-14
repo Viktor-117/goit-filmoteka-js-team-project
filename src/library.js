@@ -1,6 +1,6 @@
 import filmCardTemplate from './hbs/modal-film-card.hbs';
 import { getById } from './js/getById';
-
+import axios from 'axios';
 import { addEfectRenderer } from './js/effect_for_cart';
 import { renderCollection } from './js/templates/movieTemplate';
 import {
