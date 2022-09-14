@@ -55,7 +55,6 @@ export default async function renderMoviesList(pageNumber) {
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
                 <p class="item__genre">${genresMarkup} | ${release_date}</p>
-                <p class="item__rating">${vote_average}</p>
               </div>
             </div>
           </li>`;
