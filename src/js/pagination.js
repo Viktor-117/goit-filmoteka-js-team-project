@@ -16,13 +16,15 @@ let currentPage = 1;
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
 export default async function renderMoviesList(pageNumber) {
   currentPage = pageNumber;
+  if (localStorage.getItem('genres') === null) {
+    await getGenres().then(({ genres }) => {
+      localStorage.setItem('genres', JSON.stringify(genres));
+    });
+  }
   await getTrending(currentPage).then(res => {
     totalPages = res.total_pages;
-    return totalPages;
-  });
-  await getFullTrendingResponce(currentPage).then(res => {
-    const moviesResult = res[1].results;
-    const genresList = res[0].genres;
+    const moviesResult = res.results;
+    // const genresList = res[0].genres;
     if (moviesResult.length >= 1) {
       markup = moviesResult.map(
         ({
@@ -34,6 +36,7 @@ export default async function renderMoviesList(pageNumber) {
           release_date,
           vote_average,
         }) => {
+          const genresList = JSON.parse(localStorage.getItem('genres'));
           const genres = genre_ids.map(item => {
             return getGenreById(item, genresList);
           });
@@ -89,7 +92,9 @@ async function addPagination() {
     },
     pageSize: 1,
     callback: async function (data, pagination) {
-      await renderMoviesList(pagination.pageNumber);
+      if (pagination.pageNumber > 1) {
+        await renderMoviesList(pagination.pageNumber);
+      }
 
       // template method of yourself
       var html = markup;
