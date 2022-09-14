@@ -98,13 +98,14 @@ async function addPagination() {
     return totalPages;
   });
   if (totalPages === 0) {
-    refs.searchErrorNotif.textContent = "Search result not successful. Enter the correct movie name and try again";
+    refs.searchErrorNotif.textContent =
+      'Search result not successful. Enter the correct movie name and try again';
     return;
   } else if (inputQuery === ``) {
-    refs.searchErrorNotif.textContent = "Please enter the name of the movie";
+    refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
     return;
   }
-  refs.searchErrorNotif.textContent = "";
+  refs.searchErrorNotif.textContent = '';
   loadingOn();
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
@@ -121,11 +122,10 @@ async function addPagination() {
       $(`.film__list`).html(html);
     },
   });
+
   $(`#pagination-container`).addHook('beforePaging', function () {
     loadingOn();
   });
-  $(`#pagination-container`).addHook('afterPaging', function () {
-    loadingOff();
-  });
+
   loadingOff();
 }
