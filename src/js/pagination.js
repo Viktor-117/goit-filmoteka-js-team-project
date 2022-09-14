@@ -3,7 +3,6 @@ import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
 import { getGenreById } from './getGenreById.js';
 import { getGenres } from './getGenres.js';
-import { getFullTrendingResponce } from './getFullRespose';
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
@@ -55,18 +54,16 @@ export default async function renderMoviesList(pageNumber) {
             ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
             : (poster = poster_path);
           // check for the presence of a date
+          let render_date = '';
           release_date === null
-            ? (release_date = release_date)
-            : (release_date = 'N/A');
+            ? (render_date = 'N/A')
+            : (render_date = release_date.slice(0, 4));
           return `<li class="gallery__item">
             <img src="${srcImgBase}${poster}" alt="${original_title}" class="img" id="${id}" />
             <div class="item__ptext">
               <h2 class="item__capt">${title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${genresMarkup} | ${release_date.slice(
-            0,
-            4
-          )}</p>
+                <p class="item__genre">${genresMarkup} | ${render_date}</p>
               </div>
             </div>
           </li>`;
@@ -94,9 +91,7 @@ async function addPagination() {
     },
     pageSize: 1,
     callback: async function (data, pagination) {
-      if (pagination.pageNumber > 1) {
-        await renderMoviesList(pagination.pageNumber);
-      }
+      await renderMoviesList(pagination.pageNumber);
 
       // template method of yourself
       var html = markup;
