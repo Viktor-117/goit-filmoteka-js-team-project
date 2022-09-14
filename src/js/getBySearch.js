@@ -4,11 +4,7 @@ import Loading from './loading';
 import { loadingOn, loadingOff } from './loading';
 import { getFullQueryResponse } from './getFullRespose.js';
 import { getGenreById } from './getGenreById.js';
-// test for deploy
-/////////////////скрипт чомусь не працює, якщо імпортувати refs із index.js. Можливо, щось роблю неправильно
-// import { refs } from '../index.js';
 
-/////////////////продублював refs із index.js - так працює
 const refs = {
   searchForm: document.querySelector('#search-form'),
   searchInput: document.querySelector('.input'),
@@ -37,7 +33,6 @@ export async function onSearch(event) {
   event.preventDefault();
 
   inputQuery = refs.searchInput.value;
-  // console.log(inputQuery);
   addPagination();
 }
 
@@ -46,9 +41,7 @@ export default async function renderMoviesList(pageNumber) {
 
   await getFullQueryResponse(inputQuery, currentPage).then(res => {
     const moviesResult = res[1].results;
-    // console.log(moviesResult);
     const genresList = res[0].genres;
-    // console.log(genresList);
     if (moviesResult.length >= 1) {
       markup = moviesResult.map(
         ({
@@ -99,7 +92,7 @@ async function addPagination() {
     return totalPages;
   });
   if (totalPages === 0) {
-    Notiflix.Notify.warning('Sorry, we couldnt find any movies with that name');
+    Notiflix.Notify.warning('Search result not successful. Enter the correct movie name and try again');
     return;
   } else if (inputQuery === ``) {
     Notiflix.Notify.warning('Please enter the name of the movie');
@@ -117,7 +110,6 @@ async function addPagination() {
     pageSize: 20,
     callback: async function (data, pagination) {
       await renderMoviesList(pagination.pageNumber);
-      // template method of yourself
       var html = markup;
       $(`.film__list`).html(html);
     },
