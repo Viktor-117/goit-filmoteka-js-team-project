@@ -25,6 +25,8 @@ console.log(localStorage.getItem('watchedMovies'));
 
 let watchedMovies = [];
 let moviesInQueue = [];
+let filteredWatchedMovies = [];
+let filteredMoviesInQueue = [];
 
 if (localStorage.getItem('watchedMovies') === null) {
   watchedMovies = [];
@@ -46,6 +48,23 @@ function onModalWindowClick(evt) {
     moviesInQueue.push(movieId);
   }
 
-  localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
-  localStorage.setItem('moviesInQueue', JSON.stringify(moviesInQueue));
+  deleteWatchedMoviesDuplicates(watchedMovies);
+  deleteMoviesInQueueDuplicates(moviesInQueue);
+
+  localStorage.setItem('watchedMovies', JSON.stringify(filteredWatchedMovies));
+  localStorage.setItem('moviesInQueue', JSON.stringify(filteredMoviesInQueue));
+}
+
+function deleteWatchedMoviesDuplicates(movies) {
+  filteredWatchedMovies = movies.filter((item, index) => {
+    return movies.indexOf(item) === index;
+  });
+  return filteredWatchedMovies;
+}
+
+function deleteMoviesInQueueDuplicates(movies) {
+  filteredMoviesInQueue = movies.filter((item, index) => {
+    return movies.indexOf(item) === index;
+  });
+  return filteredMoviesInQueue;
 }
