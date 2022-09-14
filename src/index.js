@@ -21,7 +21,6 @@ export { refs };
 const modalWindowRef = document.querySelector('.modal-film');
 
 modalWindowRef.addEventListener('click', onModalWindowClick);
-console.log(localStorage.getItem('watchedMovies'));
 
 let watchedMovies = [];
 let moviesInQueue = [];
