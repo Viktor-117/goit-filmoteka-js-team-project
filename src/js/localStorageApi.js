@@ -1,7 +1,7 @@
 export function checkLocalStorageOnwatch() {
   if (
     localStorage.getItem('watchedMovies') === null ||
-    localStorage.getItem('watchedMovies') === ''
+    JSON.parse(localStorage.getItem('watchedMovies')).length === 0
   ) {
     return true;
   }
@@ -11,7 +11,7 @@ export function checkLocalStorageOnwatch() {
 export function checkLocalStorageOnQueue() {
   if (
     localStorage.getItem('moviesInQueue') === null ||
-    localStorage.getItem('moviesInQueue') === ''
+    JSON.parse(localStorage.getItem('moviesInQueue')).length === 0
   ) {
     return true;
   }
