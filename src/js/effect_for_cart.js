@@ -2,7 +2,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 AOS.init();
-console.log(AOS);
 
 const refs = {
   moviesList: document.querySelector('.film__list'),
