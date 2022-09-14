@@ -32,16 +32,7 @@ export function closeFilmModal(e) {
   }
 }
 
-// if (e.key === 'Escape') {
-//   toggleModal();
-//   window.removeEventListener('keydown', closeFilmModal);
-//   }
-// }
 
-// export function toggleModal() {
-//   refs.filmModal.classList.toggle('is-hidden');
-//   window.addEventListener('keydown', closeFilmModal);
-// }
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
   refs.filmCard.innerHTML = markup;
