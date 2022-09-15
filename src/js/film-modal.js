@@ -66,7 +66,7 @@ export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
 }
 
-function modalBtnChange(id) {
+export function modalBtnChange(id) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
   // if (watchedMovies.includes(id)) {
