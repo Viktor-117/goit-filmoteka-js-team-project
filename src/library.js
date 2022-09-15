@@ -51,19 +51,12 @@ function renderPage() {
   if (checkLocalStorageOnwatch()) {
     renderInfoPage();
   } else {
-    const idWatch = JSON.parse(localStorage.getItem('watchedMovies'));
+    const watchObj = JSON.parse(localStorage.getItem('watchedMovies'));
     refs.moviesList.innerHTML = '';
-
-    for (let id of idWatch) {
-      loadingOn();
-      getById(id)
-        .then(data => {
-          renderCollection(data);
-          addEfectRenderer();
-        })
-        .finally(() => {
-          loadingOff();
-        });
+    console.log(watchObj);
+    for (let obj of watchObj) {
+      renderCollection(obj);
+      addEfectRenderer();
     }
   }
 }
@@ -82,19 +75,12 @@ function clickOnQueueBtn() {
   if (checkLocalStorageOnQueue()) {
     renderInfoPage();
   } else {
-    const idWatch = JSON.parse(localStorage.getItem('moviesInQueue'));
+    const queueObj = JSON.parse(localStorage.getItem('moviesInQueue'));
     refs.moviesList.innerHTML = '';
-    loadingOn();
 
-    for (let id of idWatch) {
-      getById(id)
-        .then(data => {
-          renderCollection(data);
-          addEfectRenderer();
-        })
-        .finally(() => {
-          loadingOff();
-        });
+    for (let obj of queueObj) {
+      renderCollection(obj);
+      addEfectRenderer();
     }
   }
 }
@@ -155,19 +141,49 @@ if (localStorage.getItem('moviesInQueue') === null) {
   moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
 }
 
-function onModalWindowClick(evt) {
-  const movieId = evt.currentTarget.id;
+// function onModalWindowClick(evt) {
+//   const movieId = evt.currentTarget.id;
+//   if (evt.target.id === 'watched') {
+//     if (watchedMovies.includes(String(movieId))) {
+//       watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
+//     } else {
+//       watchedMovies.push(movieId);
+//     }
+//   } else if (evt.target.id === 'queue') {
+//     if (moviesInQueue.includes(String(movieId))) {
+//       moviesInQueue.splice(moviesInQueue.indexOf(movieId), 1);
+//     } else {
+//       moviesInQueue.push(movieId);
+//     }
+//   }
+
+//   deleteWatchedMoviesDuplicates(watchedMovies);
+//   deleteMoviesInQueueDuplicates(moviesInQueue);
+
+//   localStorage.setItem('watchedMovies', JSON.stringify(filteredWatchedMovies));
+//   localStorage.setItem('moviesInQueue', JSON.stringify(filteredMoviesInQueue));
+// }
+async function onModalWindowClick(evt) {
+  const movieId = parseInt(evt.currentTarget.id);
+  let movieObj = {};
+  await getById(movieId).then(data => {
+    movieObj = data;
+  });
+
+  const existWatchObj = watchedMovies.find(option => option.id === movieId);
+  const existQueueObj = moviesInQueue.find(option => option.id === movieId);
+
   if (evt.target.id === 'watched') {
-    if (watchedMovies.includes(String(movieId))) {
-      watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
+    if (existWatchObj === undefined) {
+      watchedMovies.push(movieObj);
     } else {
-      watchedMovies.push(movieId);
+      watchedMovies.splice(watchedMovies.indexOf(existWatchObj), 1);
     }
   } else if (evt.target.id === 'queue') {
-    if (moviesInQueue.includes(String(movieId))) {
-      moviesInQueue.splice(moviesInQueue.indexOf(movieId), 1);
+    if (existQueueObj === undefined) {
+      moviesInQueue.push(movieObj);
     } else {
-      moviesInQueue.push(movieId);
+      moviesInQueue.splice(watchedMovies.indexOf(existQueueObj), 1);
     }
   }
 
@@ -177,7 +193,6 @@ function onModalWindowClick(evt) {
   localStorage.setItem('watchedMovies', JSON.stringify(filteredWatchedMovies));
   localStorage.setItem('moviesInQueue', JSON.stringify(filteredMoviesInQueue));
 }
-
 function deleteWatchedMoviesDuplicates(movies) {
   filteredWatchedMovies = movies.filter((item, index) => {
     return movies.indexOf(item) === index;
