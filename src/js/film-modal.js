@@ -33,7 +33,7 @@ export function closeFilmModal(e) {
   }
 }
 
-function renderFilmInfo(filmData) {
+export function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
   const markup = filmCardTemplate(filmData);
