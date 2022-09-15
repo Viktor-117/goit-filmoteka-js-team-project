@@ -12,7 +12,10 @@ function movieTemplate(data) {
   data.poster_path === null
     ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
     : (poster = data.poster_path);
-
+  let relDate = '';
+  data.release_date === ''
+    ? (relDate = 'No date')
+    : (relDate = data.release_date.slice(0, 4));
   return `<li class="gallery__item" data-itemid="${data.id}">
             <img src="${srcImgBase}${poster}" alt="${
     data.original_title
@@ -20,9 +23,7 @@ function movieTemplate(data) {
             <div class="item__ptext">
               <h2 class="item__capt">${data.title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${filmGenre.join(' ')} | ${
-    data.release_date
-  }</p>
+                <p class="item__genre">${filmGenre.join(' ')} | ${relDate}</p>
                 <p class="item__rating">${data.vote_average}</p>
               </div>
             </div>
