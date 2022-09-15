@@ -16,14 +16,18 @@ function movieTemplate(data) {
   data.release_date === ''
     ? (relDate = 'No date')
     : (relDate = data.release_date.slice(0, 4));
+
+  let renderGanres = '';
+  filmGenre.length === 0
+    ? (renderGanres = 'No genres')
+    : (renderGanres = filmGenre.join());
+
   return `<li class="gallery__item" data-itemid="${data.id}">
-            <img src="${srcImgBase}${poster}" alt="${
-    data.original_title
-  }" class="img" id="${data.id}"/>
+            <img src="${srcImgBase}${poster}" alt="${data.original_title}" class="img" id="${data.id}"/>
             <div class="item__ptext">
               <h2 class="item__capt">${data.title}</h2>
               <div class="item__wrap">
-                <p class="item__genre">${filmGenre.join(' ')} | ${relDate}</p>
+                <p class="item__genre">${renderGanres} | ${relDate}</p>
                 <p class="item__rating">${data.vote_average}</p>
               </div>
             </div>
