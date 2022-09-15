@@ -44,7 +44,7 @@ export default async function renderMoviesList(pageNumber) {
           if (genres.length === 0) {
             genresMarkup = 'No genres';
           } else if (genres.length < 3) {
-            genresMarkup = genres.join();
+            genresMarkup = genres.join(',&nbsp;');
           } else {
             genresMarkup = `${genres[0]}, ${genres[1]}, Others`;
           }

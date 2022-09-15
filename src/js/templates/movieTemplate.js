@@ -21,7 +21,7 @@ function movieTemplate(data) {
   if (filmGenre.length === 0) {
     renderGanres = 'No genres';
   } else if (filmGenre.length < 3) {
-    renderGanres = filmGenre.join();
+    renderGanres = filmGenre.join(',&nbsp;');
   } else {
     renderGanres = `${filmGenre[0]}, ${filmGenre[1]}, Others`;
   }
