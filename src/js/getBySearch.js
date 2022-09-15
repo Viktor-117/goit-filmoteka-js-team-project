@@ -104,6 +104,8 @@ async function addPagination() {
     return;
   } else if (inputQuery === ``) {
     refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
+    $(`#pagination-container`).pagination(`destroy`);
+    refs.moviesList.innerHTML = ``;
     return;
   }
   refs.searchErrorNotif.textContent = '';
