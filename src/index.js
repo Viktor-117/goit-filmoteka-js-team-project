@@ -60,7 +60,7 @@ async function onModalWindowClick(evt) {
     if (existQueueObj === undefined) {
       moviesInQueue.push(movieObj);
     } else {
-      moviesInQueue.splice(watchedMovies.indexOf(existQueueObj), 1);
+      moviesInQueue.splice(moviesInQueue.indexOf(existQueueObj), 1);
     }
   }
 
