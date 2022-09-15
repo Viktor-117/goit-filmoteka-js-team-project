@@ -37,7 +37,6 @@ export function closeFilmModal(e) {
 export function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
-  console.log(watchedMovies);
   const markup = filmCardTemplate(filmData);
 
   refs.filmCard.innerHTML = markup;
