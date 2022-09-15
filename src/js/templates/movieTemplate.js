@@ -13,9 +13,19 @@ function movieTemplate(data) {
     ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
     : (poster = data.poster_path);
   let relDate = '';
-  data.release_date === ('' || undefined)
-    ? (relDate = 'No date')
-    : (relDate = data.release_date.slice(0, 4));
+  if (
+    data.release_date === '' ||
+    data.release_date === null ||
+    data.release_date === undefined
+  ) {
+    relDate = 'No date';
+  } else {
+    relDate = data.release_date.slice(0, 4);
+  }
+  // ? (relDate = 'No date')
+  // : (relDate = data.release_date.slice(0, 4));
+
+  console.log(relDate);
 
   let renderGanres = '';
   if (filmGenre.length === 0) {
