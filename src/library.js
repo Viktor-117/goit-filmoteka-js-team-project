@@ -9,7 +9,13 @@ import {
 } from './js/localStorageApi';
 import { loadingOn, loadingOff } from './js/loading';
 import { openTeamModal, closeTeamModal } from './js/team-modal';
-import { openFilmModal, closeFilmModal, renderFilmInfo, onCardClick, showFilmInfo } from './js/film-modal';
+import {
+  openFilmModal,
+  closeFilmModal,
+  renderFilmInfo,
+  onCardClick,
+  showFilmInfo,
+} from './js/film-modal';
 
 // ==============Додає ключ і значення (Тимчасово!)
 // JSON.stringify(localStorage.setItem('watchedMovies', '[ 760741]'));
@@ -21,7 +27,7 @@ const refs = {
   queueBtn: document.querySelector('.queue_btn'),
   linkToTeam: document.querySelector('.footer__link'),
   moviesList: document.querySelector('.film__list'),
-/////////
+  /////////
   openFilmModal: document.querySelector('[data-modal-open]'),
   closeFilmModal: document.querySelector('[data-modal-close]'),
   closeFilmModalBtn: document.querySelector('[data-modal-close-btn]'),
@@ -119,7 +125,6 @@ function closeFilmModal(e) {
   }
 }
 
-
 function renderFilmInfo(filmData) {
   const markup = filmCardTemplate(filmData);
   refs.filmCard.innerHTML = markup;
@@ -133,4 +138,62 @@ function onCardClick(event) {
 }
 function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
+}
+
+const modalWindowRef = document.querySelector('.modal-film');
+
+modalWindowRef.addEventListener('click', onModalWindowClick);
+
+let watchedMovies = [];
+let moviesInQueue = [];
+let filteredWatchedMovies = [];
+let filteredMoviesInQueue = [];
+
+if (localStorage.getItem('watchedMovies') === null) {
+  watchedMovies = [];
+} else {
+  watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
+}
+
+if (localStorage.getItem('moviesInQueue') === null) {
+  moviesInQueue = [];
+} else {
+  moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
+}
+
+function onModalWindowClick(evt) {
+  const movieId = evt.currentTarget.id;
+  if (evt.target.id === 'watched') {
+    if (watchedMovies.includes(String(movieId))) {
+      watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
+    } else {
+      watchedMovies.push(movieId);
+    }
+  } else if (evt.target.id === 'queue') {
+    if (moviesInQueue.includes(String(movieId))) {
+      moviesInQueue.splice(moviesInQueue.indexOf(movieId), 1);
+    } else {
+      moviesInQueue.push(movieId);
+    }
+  }
+
+  deleteWatchedMoviesDuplicates(watchedMovies);
+  deleteMoviesInQueueDuplicates(moviesInQueue);
+
+  localStorage.setItem('watchedMovies', JSON.stringify(filteredWatchedMovies));
+  localStorage.setItem('moviesInQueue', JSON.stringify(filteredMoviesInQueue));
+}
+
+function deleteWatchedMoviesDuplicates(movies) {
+  filteredWatchedMovies = movies.filter((item, index) => {
+    return movies.indexOf(item) === index;
+  });
+  return filteredWatchedMovies;
+}
+
+function deleteMoviesInQueueDuplicates(movies) {
+  filteredMoviesInQueue = movies.filter((item, index) => {
+    return movies.indexOf(item) === index;
+  });
+  return filteredMoviesInQueue;
 }

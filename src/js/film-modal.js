@@ -33,7 +33,6 @@ export function closeFilmModal(e) {
   }
 }
 
-
 function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
@@ -53,7 +52,7 @@ function renderFilmInfo(filmData) {
   return Promise.resolve();
 }
 
-function onCardClick(event) {
+export function onCardClick(event) {
   if (event.target.className === 'img') {
     // console.log(event.target.id);
     const filmId = event.target.getAttribute('id');
