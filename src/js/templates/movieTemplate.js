@@ -22,10 +22,6 @@ function movieTemplate(data) {
   } else {
     relDate = data.release_date.slice(0, 4);
   }
-  // ? (relDate = 'No date')
-  // : (relDate = data.release_date.slice(0, 4));
-
-  console.log(relDate);
 
   let renderGanres = '';
   if (filmGenre.length === 0) {
