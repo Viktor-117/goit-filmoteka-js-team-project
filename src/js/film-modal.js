@@ -11,7 +11,6 @@ const refs = {
 };
 
 refs.openFilmModal.addEventListener('click', onCardClick);
-// refs.closeFilmModal.addEventListener('click', toggleModal);
 
 export function openFilmModal() {
   refs.filmModal.classList.remove('is-hidden');
@@ -48,29 +47,17 @@ export function renderFilmInfo(filmData) {
     queuedButton.textContent = 'REMOVE FROM QUEUE';
   }
 
-  // console.log(watchedButton);
   return Promise.resolve();
 }
 
 export function onCardClick(event) {
   if (event.target.className === 'img') {
-    // console.log(event.target.id);
     const filmId = event.target.getAttribute('id');
     filmId && showFilmInfo(filmId);
     refs.modalFilm.id = filmId;
     openFilmModal();
-    modalBtnChange(filmId);
   }
 }
 export function showFilmInfo(movieId) {
   getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
-}
-
-export function modalBtnChange(id) {
-  const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
-  const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
-  // if (watchedMovies.includes(id)) {
-  //   document.querySelector('#watched').textContent = 'REMOVE FROM WATCHED';
-  //   // watchedMovies.splice(watchedMovies.indexOf(id), 1);
-  // }
 }
