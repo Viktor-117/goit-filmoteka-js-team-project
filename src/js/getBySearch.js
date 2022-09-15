@@ -17,7 +17,7 @@ let currentPage = 1;
 
 let markup = '';
 
-let totalPages = 2;
+let totalPages = 1;
 
 export async function fetchMovies(inputQuery, currentPage) {
   const mainUrl = `https://api.themoviedb.org/3/search/movie`;
