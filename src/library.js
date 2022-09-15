@@ -175,14 +175,18 @@ async function onModalWindowClick(evt) {
 
   if (evt.target.id === 'watched') {
     if (existWatchObj === undefined) {
+      evt.target.textContent = 'REMOVE FROM WATCHED';
       watchedMovies.push(movieObj);
     } else {
+      evt.target.textContent = 'ADD TO WATCHED';
       watchedMovies.splice(watchedMovies.indexOf(existWatchObj), 1);
     }
   } else if (evt.target.id === 'queue') {
     if (existQueueObj === undefined) {
+      evt.target.textContent = 'REMOVE FROM QUEUE';
       moviesInQueue.push(movieObj);
     } else {
+      evt.target.textContent = 'ADD TO QUEUE';
       moviesInQueue.splice(moviesInQueue.indexOf(existQueueObj), 1);
     }
   }
