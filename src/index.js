@@ -64,7 +64,7 @@ async function onModalWindowClick(evt) {
       moviesInQueue.push(movieObj);
     } else {
       evt.target.textContent = 'ADD TO QUEUE';
-      moviesInQueue.splice(watchedMovies.indexOf(existQueueObj), 1);
+      moviesInQueue.splice(moviesInQueue.indexOf(existQueueObj), 1);
     }
   }
 
