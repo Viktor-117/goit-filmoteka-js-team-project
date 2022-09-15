@@ -58,6 +58,7 @@
   height: 30px;
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 .btn-modal-close__svg {
   width: 14px;
@@ -241,6 +242,7 @@
   letter-spacing: 0em;
   text-align: center;
   background: rgba(255, 255, 255, 1);
+  cursor: pointer;
   &:hover,
   &:focus {
     background: rgba(255, 107, 1, 1);
