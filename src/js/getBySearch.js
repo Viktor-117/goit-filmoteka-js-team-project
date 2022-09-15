@@ -99,6 +99,8 @@ async function addPagination() {
   if (totalPages === 0) {
     refs.searchErrorNotif.textContent =
       'Search result not successful. Enter the correct movie name and try again';
+    $(`#pagination-container`).pagination(`destroy`);
+    refs.moviesList.innerHTML = ``;
     return;
   } else if (inputQuery === ``) {
     refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
