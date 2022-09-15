@@ -9,7 +9,7 @@ const refs = {
 };
 const API_KEY = '520faa847257d57af54017c37ef43fe0';
 //end temp temporary constants
-let totalPages = 1;
+let totalPages = 1000;
 let markup = ``;
 let currentPage = 1;
 const srcImgBase = 'https://image.tmdb.org/t/p/w500';
@@ -76,7 +76,6 @@ export default async function renderMoviesList(pageNumber) {
 }
 
 async function addPagination() {
-  await renderMoviesList(1);
   $(`#pagination-container`).addHook('beforePaging', function () {
     loadingOn();
   });

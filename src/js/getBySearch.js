@@ -17,7 +17,7 @@ let currentPage = 1;
 
 let markup = '';
 
-let totalPages = 1;
+let totalPages = 2;
 
 export async function fetchMovies(inputQuery, currentPage) {
   const mainUrl = `https://api.themoviedb.org/3/search/movie`;
@@ -99,6 +99,8 @@ async function addPagination() {
   if (totalPages === 0) {
     refs.searchErrorNotif.textContent =
       'Search result not successful. Enter the correct movie name and try again';
+    $(`#pagination-container`).pagination(`destroy`);
+    refs.moviesList.innerHTML = ``;
     return;
   } else if (inputQuery === ``) {
     refs.searchErrorNotif.textContent = 'Please enter the name of the movie';
