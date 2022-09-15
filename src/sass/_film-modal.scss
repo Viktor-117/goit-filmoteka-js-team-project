@@ -223,6 +223,7 @@
   overflow-y: auto;
   @include tablet {
     height: auto;
+    max-height: 160px;
   }
 }
 .modal-film__btn-grup {
