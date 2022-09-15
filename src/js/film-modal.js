@@ -10,6 +10,8 @@ const refs = {
   addToWatchedBtn: document.querySelector('.modal-film'),
 };
 
+let filmId = '';
+
 refs.openFilmModal.addEventListener('click', onCardClick);
 
 export function openFilmModal() {
@@ -35,15 +37,16 @@ export function closeFilmModal(e) {
 export function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
+  console.log(watchedMovies);
   const markup = filmCardTemplate(filmData);
 
   refs.filmCard.innerHTML = markup;
   const watchedButton = refs.filmCard.querySelector('#watched');
-  if (watchedMovies.includes(String(filmData.id))) {
+  if (watchedMovies.find(element => element.id === Number(filmId))) {
     watchedButton.textContent = 'REMOVE FROM WATCHED';
   }
   const queuedButton = refs.filmCard.querySelector('#queue');
-  if (moviesInQueue.includes(String(filmData.id))) {
+  if (moviesInQueue.find(element => element.id === Number(filmId))) {
     queuedButton.textContent = 'REMOVE FROM QUEUE';
   }
 
@@ -52,7 +55,7 @@ export function renderFilmInfo(filmData) {
 
 export function onCardClick(event) {
   if (event.target.className === 'img') {
-    const filmId = event.target.getAttribute('id');
+    filmId = event.target.getAttribute('id');
     filmId && showFilmInfo(filmId);
     refs.modalFilm.id = filmId;
     openFilmModal();
