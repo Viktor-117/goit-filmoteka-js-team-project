@@ -7,6 +7,7 @@ import pagination from './js/pagination';
 import { onSearch } from './js/getBySearch.js';
 import { openTeamModal, closeTeamModal } from './js/team-modal';
 import './js/scroll-button';
+import { getById } from './js/getById';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -39,19 +40,27 @@ if (localStorage.getItem('moviesInQueue') === null) {
   moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
 }
 
-function onModalWindowClick(evt) {
-  const movieId = evt.currentTarget.id;
+async function onModalWindowClick(evt) {
+  const movieId = parseInt(evt.currentTarget.id);
+  let movieObj = {};
+  await getById(movieId).then(data => {
+    movieObj = data;
+  });
+
+  const existWatchObj = watchedMovies.find(option => option.id === movieId);
+  const existQueueObj = moviesInQueue.find(option => option.id === movieId);
+
   if (evt.target.id === 'watched') {
-    if (watchedMovies.includes(String(movieId))) {
-      watchedMovies.splice(watchedMovies.indexOf(movieId), 1);
+    if (existWatchObj === undefined) {
+      watchedMovies.push(movieObj);
     } else {
-      watchedMovies.push(movieId);
+      watchedMovies.splice(watchedMovies.indexOf(existWatchObj), 1);
     }
   } else if (evt.target.id === 'queue') {
-    if (moviesInQueue.includes(String(movieId))) {
-      moviesInQueue.splice(moviesInQueue.indexOf(movieId), 1);
+    if (existQueueObj === undefined) {
+      moviesInQueue.push(movieObj);
     } else {
-      moviesInQueue.push(movieId);
+      moviesInQueue.splice(watchedMovies.indexOf(existQueueObj), 1);
     }
   }
 
