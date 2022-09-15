@@ -13,14 +13,18 @@ function movieTemplate(data) {
     ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
     : (poster = data.poster_path);
   let relDate = '';
-  data.release_date === ''
+  data.release_date === ('' || undefined)
     ? (relDate = 'No date')
     : (relDate = data.release_date.slice(0, 4));
 
   let renderGanres = '';
-  filmGenre.length === 0
-    ? (renderGanres = 'No genres')
-    : (renderGanres = filmGenre.join());
+  if (filmGenre.length === 0) {
+    renderGanres = 'No genres';
+  } else if (filmGenre.length < 3) {
+    renderGanres = filmGenre.join();
+  } else {
+    renderGanres = `${filmGenre[0]}, ${filmGenre[1]}, Others`;
+  }
 
   return `<li class="gallery__item" data-itemid="${data.id}">
             <img src="${srcImgBase}${poster}" alt="${data.original_title}" class="img" id="${data.id}"/>
