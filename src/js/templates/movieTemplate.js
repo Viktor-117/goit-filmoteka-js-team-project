@@ -8,9 +8,13 @@ function movieTemplate(data) {
   for (let object of data.genres) {
     filmGenre.push(object.name);
   }
+  let poster = '';
+  data.poster_path === null
+    ? (poster = '/uc4RAVW1T3T29h6OQdr7zu4Blui.jpg')
+    : (poster = data.poster_path);
 
   return `<li class="gallery__item" data-itemid="${data.id}">
-            <img src="${srcImgBase}${data.poster_path}" alt="${
+            <img src="${srcImgBase}${poster}" alt="${
     data.original_title
   }" class="img" id="${data.id}"/>
             <div class="item__ptext">
