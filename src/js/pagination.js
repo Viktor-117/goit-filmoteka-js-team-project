@@ -76,6 +76,7 @@ export default async function renderMoviesList(pageNumber) {
 }
 
 async function addPagination() {
+  await renderMoviesList(1);
   $(`#pagination-container`).addHook('beforePaging', function () {
     loadingOn();
   });
