@@ -12,7 +12,7 @@ function movieTemplate(data) {
   return `<li class="gallery__item" data-itemid="${data.id}">
             <img src="${srcImgBase}${data.poster_path}" alt="${
     data.original_title
-  }" class="img" />
+  }" class="img" id="${data.id}"/>
             <div class="item__ptext">
               <h2 class="item__capt">${data.title}</h2>
               <div class="item__wrap">

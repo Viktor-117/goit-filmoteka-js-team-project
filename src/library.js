@@ -1,4 +1,6 @@
+import filmCardTemplate from './hbs/modal-film-card.hbs';
 import { getById } from './js/getById';
+import axios from 'axios';
 import { addEfectRenderer } from './js/effect_for_cart';
 import { renderCollection } from './js/templates/movieTemplate';
 import {
@@ -7,6 +9,7 @@ import {
 } from './js/localStorageApi';
 import { loadingOn, loadingOff } from './js/loading';
 import { openTeamModal, closeTeamModal } from './js/team-modal';
+import { openFilmModal, closeFilmModal, renderFilmInfo, onCardClick, showFilmInfo } from './js/film-modal';
 
 // ==============Додає ключ і значення (Тимчасово!)
 // JSON.stringify(localStorage.setItem('watchedMovies', '[ 760741]'));
@@ -18,6 +21,13 @@ const refs = {
   queueBtn: document.querySelector('.queue_btn'),
   linkToTeam: document.querySelector('.footer__link'),
   moviesList: document.querySelector('.film__list'),
+/////////
+  openFilmModal: document.querySelector('[data-modal-open]'),
+  closeFilmModal: document.querySelector('[data-modal-close]'),
+  closeFilmModalBtn: document.querySelector('[data-modal-close-btn]'),
+  filmModal: document.querySelector('[data-film-modal]'),
+  filmCard: document.querySelector('[data-film-card]'),
+  modalFilm: document.querySelector('.modal-film'),
 };
 
 // ==============render info page================
@@ -86,3 +96,41 @@ renderPage();
 
 refs.watchedBtn.addEventListener('click', clickOnWatchedBtn);
 refs.queueBtn.addEventListener('click', clickOnQueueBtn);
+/////////
+refs.openFilmModal.addEventListener('click', onCardClick);
+
+export function openFilmModal() {
+  refs.filmModal.classList.remove('is-hidden');
+  refs.closeFilmModal.addEventListener('click', closeFilmModal);
+  refs.closeFilmModalBtn.addEventListener('click', closeFilmModal);
+  window.addEventListener('keydown', closeFilmModal);
+}
+
+function closeFilmModal(e) {
+  if (
+    e.target === refs.closeFilmModal ||
+    e.currentTarget === refs.closeFilmModalBtn
+  ) {
+    refs.filmModal.classList.add('is-hidden');
+    return;
+  } else if (e.key === 'Escape') {
+    refs.filmModal.classList.add('is-hidden');
+    window.removeEventListener('keydown', closeFilmModal);
+  }
+}
+
+
+function renderFilmInfo(filmData) {
+  const markup = filmCardTemplate(filmData);
+  refs.filmCard.innerHTML = markup;
+  return Promise.resolve();
+}
+function onCardClick(event) {
+  const filmId = event.target.getAttribute('id');
+  filmId && showFilmInfo(filmId);
+  refs.modalFilm.id = filmId;
+  openFilmModal();
+}
+function showFilmInfo(movieId) {
+  getById(movieId).then(renderFilmInfo).then(openFilmModal).catch(console.log);
+}

@@ -52,7 +52,7 @@
     <div class="wrapper">
       <main>
         <div class="container">
-          <ul class="film__list"></ul>
+          <ul class="film__list" data-modal-open></ul>
         </div>
       </main>
       <footer class="footer">
@@ -186,6 +186,17 @@
             <p class="team-modal-dev__text">Developer</p>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <div class="backdrop is-hidden" data-film-modal data-modal-close>
+      <div class="modal-film" id="">
+        <button class="btn-modal-close" type="button" data-modal-close-btn>
+          <svg class="btn-modal-close__svg">
+            <use href="./images/symbol-defs.svg#icon-VectorX"></use>
+          </svg>
+        </button>
+        <div class="modal-film__film-card" data-film-card></div>
       </div>
     </div>
   </body>

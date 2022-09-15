@@ -33,16 +33,7 @@ export function closeFilmModal(e) {
   }
 }
 
-// if (e.key === 'Escape') {
-//   toggleModal();
-//   window.removeEventListener('keydown', closeFilmModal);
-//   }
-// }
 
-// export function toggleModal() {
-//   refs.filmModal.classList.toggle('is-hidden');
-//   window.addEventListener('keydown', closeFilmModal);
-// }
 function renderFilmInfo(filmData) {
   const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies'));
   const moviesInQueue = JSON.parse(localStorage.getItem('moviesInQueue'));
