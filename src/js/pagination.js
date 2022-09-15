@@ -84,7 +84,7 @@ async function addPagination() {
   $(`#pagination-container`).pagination({
     dataSource: function (done) {
       var result = [];
-      for (var i = 1; i < totalPages; i++) {
+      for (var i = 1; i <= totalPages; i++) {
         result.push(i);
       }
       done(result);
